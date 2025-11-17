@@ -1,0 +1,152 @@
+\chapter{附录}
+\section{1 绪论}
+\section{2 一阶微分方程}
+\subsection{伯努利微分方程}
+\begin{definition}[伯努利微分方程]
+形如
+\begin{equation}
+    \frac{dy}{dx} + P(x)y = Q(x)y^n \quad (n \neq 0,1)
+    \label{eq:bernoulli_form}
+\end{equation}
+的一阶常微分方程称为\textbf{伯努利微分方程}，其中$P(x)$、$Q(x)$为已知连续函数，$n$为实数常数。
+\end{definition}
+
+\begin{remark}
+当$n=0$或$n=1$时，方程退化为线性微分方程：
+\begin{itemize}
+    \item 若$n=0$：$\frac{dy}{dx} + P(x)y = Q(x)$
+    \item 若$n=1$：$\frac{dy}{dx} + [P(x)-Q(x)]y = 0$
+\end{itemize}
+这两种情况均可使用一阶线性微分方程的求解方法。
+\end{remark}
+
+\subsubsection{求解方法}
+
+伯努利方程可通过变量代换化为线性微分方程求解，具体步骤如下：
+
+\paragraph{步骤1：变量代换}
+令
+\begin{equation}
+    z = y^{1-n}
+    \label{eq:substitution}
+\end{equation}
+则通过求导可得：
+\begin{equation}
+    \frac{dz}{dx} = (1-n)y^{-n}\frac{dy}{dx}
+    \label{eq:dzdx}
+\end{equation}
+
+\paragraph{步骤2：方程变换}
+将原方程(\ref{eq:bernoulli_form})两边同乘以$(1-n)y^{-n}$：
+\begin{equation}
+    (1-n)y^{-n}\frac{dy}{dx} + (1-n)P(x)y^{1-n} = (1-n)Q(x)
+\end{equation}
+代入变量代换关系(\ref{eq:substitution})和(\ref{eq:dzdx})，得到：
+\begin{equation}
+    \frac{dz}{dx} + (1-n)P(x)z = (1-n)Q(x)
+    \label{eq:linear_eq}
+\end{equation}
+
+\paragraph{步骤3：求解线性方程}
+方程(\ref{eq:linear_eq})是关于$z$的一阶线性微分方程，其通解为：
+\begin{equation}
+    z = e^{-\int (1-n)P(x)dx} \left[ \int (1-n)Q(x)e^{\int (1-n)P(x)dx}dx + C \right]
+    \label{eq:linear_solution}
+\end{equation}
+其中$C$为任意常数。
+
+\paragraph{步骤4：回代原变量}
+最后将$z = y^{1-n}$代回，得到原方程的通解：
+\begin{equation}
+    y^{1-n} = e^{-\int (1-n)P(x)dx} \left[ \int (1-n)Q(x)e^{\int (1-n)P(x)dx}dx + C \right]
+    \label{eq:final_solution}
+\end{equation}
+
+\subsubsection{应用实例}
+
+\begin{example}[人口增长模型]
+考虑包含竞争效应的人口增长模型：
+\begin{equation}
+    \frac{dN}{dt} = rN - kN^2
+\end{equation}
+其中$r$为固有增长率，$k$为竞争系数。该方程可写为伯努利方程形式：
+\begin{equation}
+    \frac{dN}{dt} - rN = -kN^2
+\end{equation}
+这里$n=2$，令$z = N^{1-2} = N^{-1}$，可化为线性方程求解。
+\end{example}
+
+\begin{example}[流体力学应用]
+在理想流体力学中，伯努利方程描述了沿流线的能量守恒：
+\begin{equation}
+    \frac{dv}{ds} + \frac{1}{\rho}\frac{dp}{ds} + g\frac{dz}{ds} = 0
+\end{equation}
+在某些特定条件下可化为微分方程形式。
+\end{example}
+
+\subsubsection{理论意义}
+
+伯努利微分方程在常微分方程理论中具有重要地位：
+\begin{itemize}
+    \item 展示了一类非线性方程线性化的典型方法
+    \item 提供了变量代换法的经典范例
+    \item 在物理学、生物学、经济学等领域有广泛应用
+    \item 是研究更复杂非线性微分方程的基础
+\end{itemize}
+
+\subsection{常用积分}
+\begin{longtable}{clc}
+\caption{24个常用不定积分公式} \\
+\toprule
+序号 & $\displaystyle \int f(x) \, dx$ & $F(x) + C$ \\
+\midrule
+\endfirsthead
+
+\multicolumn{3}{c}{\textbf{表格续前页}} \\
+\toprule
+序号 & $\displaystyle \int f(x) \, dx$ & $F(x) + C$ \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\textit{续下页}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+1 & $\displaystyle \int k \, dx$ & $kx + C$ \\[8pt]
+2 & $\displaystyle \int x^n \, dx$ & $\displaystyle \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$ \\[8pt]
+3 & $\displaystyle \int \frac{1}{x} \, dx$ & $\ln|x| + C$ \\[8pt]
+4 & $\displaystyle \int e^x \, dx$ & $e^x + C$ \\[8pt]
+5 & $\displaystyle \int a^x \, dx$ & $\displaystyle \frac{a^x}{\ln a} + C \quad (a > 0, a \neq 1)$ \\[8pt]
+6 & $\displaystyle \int \sin x \, dx$ & $-\cos x + C$ \\[8pt]
+7 & $\displaystyle \int \cos x \, dx$ & $\sin x + C$ \\[8pt]
+8 & $\displaystyle \int \tan x \, dx$ & $-\ln|\cos x| + C$ \\[8pt]
+9 & $\displaystyle \int \cot x \, dx$ & $\ln|\sin x| + C$ \\[8pt]
+10 & $\displaystyle \int \sec x \, dx$ & $\ln|\sec x + \tan x| + C$ \\[8pt]
+11 & $\displaystyle \int \csc x \, dx$ & $\ln|\csc x - \cot x| + C$ \\[8pt]
+12 & $\displaystyle \int \sec^2 x \, dx$ & $\tan x + C$ \\[8pt]
+13 & $\displaystyle \int \csc^2 x \, dx$ & $-\cot x + C$ \\[8pt]
+14 & $\displaystyle \int \sec x \tan x \, dx$ & $\sec x + C$ \\[8pt]
+15 & $\displaystyle \int \csc x \cot x \, dx$ & $-\csc x + C$ \\[8pt]
+16 & $\displaystyle \int \frac{1}{\sqrt{1-x^2}} \, dx$ & $\arcsin x + C$ \\[8pt]
+17 & $\displaystyle \int \frac{1}{1+x^2} \, dx$ & $\arctan x + C$ \\[8pt]
+18 & $\displaystyle \int \frac{1}{x\sqrt{x^2-1}} \, dx$ & $\text{arcsec}\, x + C$ \\[8pt]
+19 & $\displaystyle \int \frac{1}{\sqrt{a^2-x^2}} \, dx$ & $\displaystyle \arcsin \frac{x}{a} + C$ \\[8pt]
+20 & $\displaystyle \int \frac{1}{a^2+x^2} \, dx$ & $\displaystyle \frac{1}{a}\arctan \frac{x}{a} + C$ \\[8pt]
+21 & $\displaystyle \int \frac{1}{x^2-a^2} \, dx$ & $\displaystyle \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right| + C$ \\[8pt]
+22 & $\displaystyle \int \frac{1}{\sqrt{x^2 \pm a^2}} \, dx$ & $\displaystyle \ln\left|x + \sqrt{x^2 \pm a^2}\right| + C$ \\[8pt]
+23 & $\displaystyle \int \sqrt{a^2-x^2} \, dx$ & $\displaystyle \frac{x}{2}\sqrt{a^2-x^2} + \frac{a^2}{2}\arcsin\frac{x}{a} + C$ \\[8pt]
+24 & $\displaystyle \int \sqrt{x^2 \pm a^2} \, dx$ & $\displaystyle \frac{x}{2}\sqrt{x^2 \pm a^2} \pm \frac{a^2}{2}\ln\left|x + \sqrt{x^2 \pm a^2}\right| + C$ \\[8pt]
+
+\end{longtable}
+
+\subsection{欧拉公式}
+\begin{equation}
+    e^{i\theta}=\cos\theta+i\sin\theta 
+\end{equation}
+\begin{align}
+    \cos\theta=\frac{e^{i\theta}+e^{-i\theta}}{2}\\
+    \sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2}
+\end{align}

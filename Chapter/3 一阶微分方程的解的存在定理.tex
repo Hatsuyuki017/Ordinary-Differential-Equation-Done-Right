@@ -1,0 +1,430 @@
+\chapter{一阶微分方程的解的存在定理}
+
+\section{解的存在唯一性定理与逐步逼近法}
+
+\subsection{存在唯一性定理}
+
+考虑一阶微分方程初值问题：
+\[
+\begin{cases}
+\frac{dy}{dx} = f(x, y) \\
+\varphi(x_0) = y_0
+\end{cases}
+\]
+其中区域 \( R: |x - x_0| \leq a,\ |y - y_0| \leq b \)。
+
+
+\begin{theorem}
+若函数 \( f(x, y) \) 满足以下条件：
+\begin{enumerate}
+    \item \( f(x, y) \in C(R) \)（在区域 \( R \) 上连续）
+    \item \( f(x, y) \) 在 \( R \) 内关于 \( y \) 满足 Lipschitz 条件：存在正数 \( L \geq 0 \)，对任意 \( (x, y_1), (x, y_2) \in R \)，有 \( |f(x, y_1) - f(x, y_2)| \leq L|y_1 - y_2| \)
+\end{enumerate}
+
+则方程在区间 \( x \in [x_0 - h_0, x_0 + h_0] \) 上必存在唯一解 \( y = \varphi(x) \)，且满足 \( \varphi(x_0) = y_0 \)。
+
+其中 \( h_0 = \min\left(a, \frac{b}{M}\right) \)，\( M = \max_{(x,y) \in R} |f(x, y)| \)。
+\end{theorem}
+
+\begin{remark}
+    \begin{enumerate}
+        \item 若 \( f(x, y) \) 关于 \( y \) 的偏导数存在且有界（或 \( f_y(x, y) \) 连续），则 \( f(x, y) \) 满足 Lipschitz 条件。
+        \item 几何解释：解曲线 \( y = \varphi(x) \) 过初值点 \( (x_0, y_0) \) 且完全包含在区域 \( R \) 内。
+    \end{enumerate}
+\end{remark}
+
+\begin{proposition}
+求上述初值问题的解，等价于求积分方程 \( y(x) = y_0 + \int_{x_0}^x f(\xi, y(\xi)) d\xi \) 在区间 \( x \in [x_0 - h_0, x_0 + h_0] \) 上的连续解。
+\end{proposition}
+
+\begin{proof}
+$(\Rightarrow)$ 设 \( y = \varphi(x) \) 是 \( \frac{dy}{dx} = f(x, y) \) 的解，且 \( \varphi(x_0) = y_0 \)。由导数定义，\( \varphi'(x) = f(x, \varphi(x)) \)，两边从 \( x_0 \) 到 \( x \) 积分：
+\[
+\varphi(x) - \varphi(x_0) = \int_{x_0}^x \varphi'(\xi) d\xi = \int_{x_0}^x f(\xi, \varphi(\xi)) d\xi
+\]
+代入 \( \varphi(x_0) = y_0 \)，得 \( \varphi(x) = y_0 + \int_{x_0}^x f(\xi, \varphi(\xi)) d\xi \)，且 \( \varphi(x) \in C[x_0 - h_0, x_0 + h_0] \)。
+
+$(\Leftarrow)$ 设 \( \varphi(x) = y_0 + \int_{x_0}^x f(\xi, \varphi(\xi)) d\xi \) 连续，则由变上限积分求导法则：
+\[
+\varphi'(x) = \left( \int_{x_0}^x f(\xi, \varphi(\xi)) d\xi \right)' = f(x, \varphi(x))
+\]
+且 \( \varphi(x_0) = y_0 \)，故 \( \varphi(x) \) 是初值问题的解。
+\end{proof}
+
+
+\subsubsection{构造逐步逼近序列 \( \{\psi_n(x)\} \)}
+通过以下递推公式定义逼近序列：
+\[
+\begin{cases}
+\psi_0(x) = y_0 \\
+\psi_n(x) = y_0 + \int_{x_0}^x f(\xi, \psi_{n-1}(\xi)) d\xi, \quad n = 1, 2, \dots
+\end{cases}
+\]
+其中 \( \psi_0(x) = y_0 \) 是过初值点 \( (x_0, y_0) \) 的常值函数。
+
+
+\begin{proposition}
+对任意正整数 \( n \)，\( \psi_n(x) \) 在 \( x \in [x_0 - h_0, x_0 + h_0] \) 内有定义且连续，且满足 \( |\psi_n(x) - y_0| \leq b \)（即 \( \psi_n(x) \subset R \)）。
+\end{proposition}
+
+\begin{proof}
+用数学归纳法证明：
+\begin{enumerate}
+    \item 当 \( n = 0 \) 时，\( \psi_0(x) = y_0 \)，显然满足 \( |\psi_0(x) - y_0| = 0 \leq b \)，连续且在区间内有定义。
+    \item 假设 \( n = k-1 \) 时，\( \psi_{k-1}(x) \) 满足结论（即 \( |\psi_{k-1}(x) - y_0| \leq b \)，连续且有定义）。对 \( n = k \)：
+\[
+|\psi_k(x) - y_0| = \left| \int_{x_0}^x f(\xi, \psi_{k-1}(\xi)) d\xi \right| \leq \int_{x_0}^x |f(\xi, \psi_{k-1}(\xi))| d\xi \leq M |x - x_0| \leq M h_0 \leq b
+\]
+且 \( \psi_k(x) \) 由连续函数的积分定义，故连续且在区间内有定义。
+\end{enumerate}
+由归纳法，对所有 \( n = 1, 2, \dots \)，命题成立。
+\end{proof}
+
+
+\begin{proposition}
+序列 \( \{\psi_n(x)\} \) 在 \( x \in [x_0 - h_0, x_0 + h_0] \) 上一致收敛。
+\end{proposition}
+
+\begin{proof}
+将 \( \psi_n(x) \) 表示为级数形式：
+\[
+\psi_n(x) = \psi_0(x) + \sum_{k=1}^n [\psi_k(x) - \psi_{k-1}(x)]
+\]
+只需证明级数 \( \sum_{k=1}^\infty [\psi_k(x) - \psi_{k-1}(x)] \) 一致收敛。
+
+用归纳法证明余项估计：
+\begin{enumerate}
+    \item 当 \( k = 1 \) 时，\( |\psi_1(x) - \psi_0(x)| \leq \int_{x_0}^x |f(\xi, y_0)| d\xi \leq M |x - x_0| \)
+    \item 假设 \( k = m \) 时，\( |\psi_m(x) - \psi_{m-1}(x)| \leq \frac{M L^{m-1} |x - x_0|^m}{m!} \)，则对 \( k = m+1 \)：
+\[
+|\psi_{m+1}(x) - \psi_m(x)| \leq \int_{x_0}^x |f(\xi, \psi_m(\xi)) - f(\xi, \psi_{m-1}(\xi))| d\xi \leq L \int_{x_0}^x |\psi_m(\xi) - \psi_{m-1}(\xi)| d\xi \leq \frac{M L^m |x - x_0|^{m+1}}{(m+1)!}
+\]
+\end{enumerate}
+由于 \( |x - x_0| \leq h_0 \)，故 \( |\psi_k(x) - \psi_{k-1}(x)| \leq \frac{M L^{k-1} h_0^k}{k!} \)。而级数 \( \sum_{k=1}^\infty \frac{M L^{k-1} h_0^k}{k!} = \frac{M}{L} (e^{L h_0} - 1) \) 收敛，由 Weierstrass 判别法，原级数一致收敛，即 \( \{\psi_n(x)\} \) 一致收敛。
+\end{proof}
+
+
+\begin{proposition}
+设 \( \psi(x) = \lim_{n \to \infty} \psi_n(x) \)，则 \( \psi(x) \) 是积分方程 \( y(x) = y_0 + \int_{x_0}^x f(\xi, y(\xi)) d\xi \) 的连续解。
+\end{proposition}
+
+\begin{proof}
+由 \( \{\psi_n(x)\} \) 一致收敛且每一项连续，故 \( \psi(x) \) 连续。对逼近公式两边取极限：
+\[
+\lim_{n \to \infty} \psi_n(x) = y_0 + \lim_{n \to \infty} \int_{x_0}^x f(\xi, \psi_{n-1}(\xi)) d\xi
+\]
+由一致收敛性，积分与极限可交换：
+\[
+\psi(x) = y_0 + \int_{x_0}^x f(\xi, \lim_{n \to \infty} \psi_{n-1}(\xi)) d\xi = y_0 + \int_{x_0}^x f(\xi, \psi(\xi)) d\xi
+\]
+故 \( \psi(x) \) 是积分方程的连续解。
+\end{proof}
+
+
+\begin{proposition}
+设 \( \psi(x) \) 和 \( \varphi(x) \) 都是积分方程在 \( [x_0 - h_0, x_0 + h_0] \) 上的连续解，则 \( \psi(x) = \varphi(x) \)（解的唯一性）。
+\end{proposition}
+
+\begin{proof}
+由积分方程定义：
+\[
+\psi(x) - \varphi(x) = \int_{x_0}^x [f(\xi, \psi(\xi)) - f(\xi, \varphi(\xi))] d\xi
+\]
+取绝对值并利用 Lipschitz 条件：
+\[
+|\psi(x) - \varphi(x)| \leq L \int_{x_0}^x |\psi(\xi) - \varphi(\xi)| d\xi
+\]
+令 \( u(x) = \int_{x_0}^x |\psi(\xi) - \varphi(\xi)| d\xi \)，则 \( u'(x) = |\psi(x) - \varphi(x)| \leq L u(x) \)，且 \( u(x_0) = 0 \)。
+
+由 Gronwall 不等式，\( u(x) \leq 0 \)，而 \( u(x) \geq 0 \)，故 \( u(x) = 0 \)，即 \( \psi(x) = \varphi(x) \)。
+\end{proof}
+
+
+\subsubsection{一阶线性方程的存在唯一性验证}
+考虑一阶线性方程 \( \frac{dy}{dx} = P(x)y + Q(x) \)，其中 \( P(x), Q(x) \) 在区间 \( I \) 上连续。
+
+令 \( f(x, y) = P(x)y + Q(x) \)，则：
+\[
+|f(x, y_1) - f(x, y_2)| = |P(x)(y_1 - y_2)| \leq L |y_1 - y_2|
+\]
+其中 \( L = \max_{x \in I} |P(x)| \)（因 \( P(x) \) 连续，故 \( L \) 存在）。因此，该方程满足存在唯一性定理条件，在 \( I \) 上存在唯一解。
+
+
+\begin{theorem}
+考虑一阶隐式微分方程 \( F(x, y, y') = 0 \)，若在点 \( (x_0, y_0, y_0') \) 的某邻域内满足：
+1. \( F(x, y, y') \) 对所有变元 \( (x, y, y') \) 连续，且存在连续偏导数；
+2. \( F(x_0, y_0, y_0') = 0 \)；
+3. \( \frac{\partial F(x_0, y_0, y_0')}{\partial y'} \neq 0 \)；
+
+则方程存在唯一解 \( y = \varphi(x) \)，定义在 \( |x - x_0| \leq h \)（\( h \) 为足够小的正数）上，且满足初值条件 \( \varphi(x_0) = y_0 \)，\( \varphi'(x_0) = y_0' \)。
+\end{theorem}
+
+
+\subsection{近似计算和误差估计}
+
+对逐步逼近序列 \( \{\psi_n(x)\} \)，第 \( n \) 次近似解 \( \psi_n(x) \) 与真正解 \( \varphi(x) \) 在 \( |x - x_0| \leq h_0 \) 内的误差估计式为：
+\[
+|\psi_n(x) - \varphi(x)| \leq \frac{M L^n h_0^{n+1}}{(n+1)!}
+\]
+
+
+\begin{example}
+方程 \( \frac{dy}{dx} = x^2 + y^2 \) 定义在矩形域 \( R: -1 \leq x \leq 1,\ -1 \leq y \leq 1 \) 上，确定经过点 \( (0, 0) \) 的解的存在区间，并求误差不超过 \( 0.05 \) 的近似解。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 确定存在区间\\
+    \begin{enumerate}
+        \item 计算 \( M = \max_{(x,y) \in R} |f(x, y)| = \max (x^2 + y^2) = 1^2 + 1^2 = 2 \)
+        \item 区域参数 \( a = 1 \)，\( b = 1 \)，故 \( h_0 = \min\left(a, \frac{b}{M}\right) = \min\left(1, \frac{1}{2}\right) = \frac{1}{2} \)
+        \item 存在区间为 \( x \in \left[-\frac{1}{2}, \frac{1}{2}\right] \)。
+    \end{enumerate}
+    \item 误差估计与近似解\\
+    \begin{enumerate}
+        \item 由 \( f_y = 2y \)，得 \( L = \max_{(x,y) \in R} |f_y| = 2 \)
+        \item 误差估计式简化为：
+     \[
+     |\psi_n(x) - \varphi(x)| \leq \frac{M}{L} \cdot \frac{(L h_0)^{n+1}}{(n+1)!} = \frac{2}{2} \cdot \frac{(2 \cdot \frac{1}{2})^{n+1}}{(n+1)!} = \frac{1}{(n+1)!}
+     \]
+     \item 
+     要求误差 \( \leq 0.05 \)，即 \( \frac{1}{(n+1)!} \leq 0.05 \)：
+     - \( n = 2 \) 时，\( \frac{1}{3!} = \frac{1}{6} \approx 0.166 > 0.05 \)；
+     - \( n = 3 \) 时，\( \frac{1}{4!} = \frac{1}{24} \approx 0.0417 < 0.05 \)，故取 \( n = 3 \)。
+    \end{enumerate}
+
+    \item 计算近似解\\
+    \begin{align*}
+        \psi_0(x) &= 0\\
+        \psi_1(x) &= 0 + \int_0^x (\xi^2 + 0^2) d\xi \\&= \frac{x^3}{3} \\
+        \psi_2(x) &= 0 + \int_0^x \left( \xi^2 + \left( \frac{\xi^3}{3} \right)^2 \right) d\xi \\&= \frac{x^3}{3} + \frac{x^7}{63} \\
+        \psi_3(x) &= 0 + \int_0^x \left( \xi^2 + \left( \frac{\xi^3}{3} + \frac{\xi^7}{63} \right)^2 \right) d\xi \\&= \frac{x^3}{3} + \frac{x^7}{63} + \frac{2x^{11}}{2079} + \frac{x^{15}}{59535}
+    \end{align*}
+\end{enumerate}
+
+
+因此，\( \psi_3(x) \) 是区间 \( \left[-\frac{1}{2}, \frac{1}{2}\right] \) 上误差不超过 \( 0.05 \) 的近似解。
+\end{solution}
+
+
+\section{解的延拓和解对初值的连续性与可微性}
+
+\subsection{解的延拓}
+
+\begin{theorem}[解的延拓定理]
+设 \( f(x, y) \) 在区域 \( G \) 内连续，且在 \( G \) 内关于 \( y \) 满足局部 Lipschitz 条件，则方程 \( \frac{dy}{dx} = f(x, y) \) 通过 \( G \) 内任意一点 \( (x_0, y_0) \) 的解 \( y = \varphi(x) \) 可以延拓，直到点 \( (x, \varphi(x)) \) 任意接近 \( G \) 的边界。
+
+以 \( x \) 增大的一方延拓为例：若解只能延拓到区间 \( [x_0, d) \) 上，则当 \( x \to d^- \) 时，\( (x, \varphi(x)) \) 趋于 \( G \) 的边界。
+\end{theorem}
+
+
+\begin{corollary}
+若 \( G \) 是无界区域，在延拓定理条件下，方程通过 \( (x_0, y_0) \) 的解 \( y = \varphi(x) \) 向 \( x \) 增大的一方延拓时，有以下两种情况：
+1. 解可以延拓到区间 \( [x_0, +\infty) \)；
+2. 解只能延拓到区间 \( [x_0, d) \)（\( d \) 为有限数），此时当 \( x \to d^- \) 时，要么 \( |\varphi(x)| \to +\infty \)，要么 \( (x, \varphi(x)) \) 趋于 \( G \) 的边界。
+\end{corollary}
+
+
+\begin{example}
+试论方程 \( \frac{dy}{dx} = \frac{y^2 - 1}{2} \) 分别通过点 \( (0, 0) \) 和 \( (\ln 2, 3) \) 的解的存在区间。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 求通解\\
+    方程为可分离变量方程，分离变量得：
+   \[
+   \frac{2 dy}{y^2 - 1} = dx
+   \]
+   积分得：
+   \[
+   \ln \left| \frac{y - 1}{y + 1} \right| = x + \ln |C| \implies \frac{y - 1}{y + 1} = C e^x \implies y = \frac{1 + C e^x}{1 - C e^x}
+   \]
+
+   \item 通过 \( (0, 0) \) 的解\\
+   代入初值 \( x = 0, y = 0 \)，得 \( 0 = \frac{1 + C}{1 - C} \implies C = -1 \)，故解为：
+   \[
+   y = \frac{1 - e^x}{1 + e^x}
+   \]
+   该函数对所有 \( x \in \mathbb{R} \) 有定义（分母 \( 1 + e^x > 0 \)），故存在区间为 \( (-\infty, +\infty) \)。
+
+    \item 通过 \( (\ln 2, 3) \) 的解\\
+    代入初值 \( x = \ln 2, y = 3 \)，得 \( 3 = \frac{1 + C e^{\ln 2}}{1 - C e^{\ln 2}} = \frac{1 + 2C}{1 - 2C} \implies C = \frac{1}{4} \)，故解为：
+   \[
+   y = \frac{1 + \frac{1}{4} e^x}{1 - \frac{1}{4} e^x} = \frac{4 + e^x}{4 - e^x}
+   \]
+   分母为零时 \( 4 - e^x = 0 \implies x = \ln 4 \)。当 \( x \to (\ln 4)^- \) 时，\( y \to +\infty \)；当 \( x \to -\infty \) 时，\( y \to 1 \)（在区域内）。故存在区间为 \( (-\infty, \ln 4) \)。
+\end{enumerate}
+   
+\end{solution}
+
+\subsection{解对初值的连续性与可微性}
+
+\begin{theorem}[解对初值的连续性定理]
+若函数 \( f(x, y) \) 在区域 \( G \) 内连续，且关于 \( y \) 满足局部 Lipschitz 条件，则方程 \( \frac{dy}{dx} = f(x, y) \) 的解 \( y = \varphi(x; x_0, y_0) \)（其中 \( (x_0, y_0) \) 为初值点）作为 \( x, x_0, y_0 \) 的函数，在其存在范围内是连续的。
+\end{theorem}
+
+
+\begin{theorem}[解对初值的可微性定理]
+若函数 \( f(x, y) \) 在区域 \( G \) 内连续，且 \( f_y(x, y) \) 在 \( G \) 内连续，则方程 \( \frac{dy}{dx} = f(x, y) \) 的解 \( y = \varphi(x; x_0, y_0) \) 作为 \( x, x_0, y_0 \) 的函数，在其存在范围内连续可微，且其偏导数满足：
+\begin{enumerate}
+    \item 对初值 \( x_0 \) 的偏导数：
+   \[
+   \frac{\partial \varphi}{\partial x_0} = -f(x, \varphi) \exp\left( \int_{x_0}^x f_y(\xi, \varphi(\xi; x_0, y_0)) d\xi \right)
+   \]
+   \item 对初值 \( y_0 \) 的偏导数：
+   \[
+   \frac{\partial \varphi}{\partial y_0} = \exp\left( \int_{x_0}^x f_y(\xi, \varphi(\xi; x_0, y_0)) d\xi \right)
+   \]
+\end{enumerate}
+\end{theorem}
+
+
+\section{奇解}
+
+\subsection{包络的定义与求法}
+
+设给定参数曲线族 \( \Phi(x, y, C) = 0 \)，其中 \( C \) 为参数，\( \Phi(x, y, C) \) 是 \( x, y, C \) 的连续可微函数。
+
+\begin{definition}[包络]
+曲线族 \( \Phi(x, y, C) = 0 \) 的包络是一条曲线，它满足：
+\begin{enumerate}
+    \item 本身不包含在曲线族中
+    \item 过该曲线的每一点，有曲线族中的一条曲线与它在该点相切
+\end{enumerate}
+
+包络包含在由以下方程组消去参数 \( C \) 得到的曲线（称为 \( C \)-判别曲线）之中：
+\[
+\begin{cases}
+\Phi(x, y, C) = 0 \\
+\frac{\partial \Phi}{\partial C}(x, y, C) = 0
+\end{cases}
+\]
+\end{definition}
+\begin{remark}
+    \( C \)-判别曲线中可能包含非包络曲线（如奇点轨迹），需进一步检验。
+\end{remark}
+
+\begin{example}
+求直线族 \( x \cos \alpha + y \sin \alpha - p = 0 \)（其中 \( \alpha \) 为参数，\( p > 0 \) 为常数）的包络。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 设 \( \Phi(x, y, \alpha) = x \cos \alpha + y \sin \alpha - p = 0 \)，对 \( \alpha \) 求偏导：
+   \[
+   \frac{\partial \Phi}{\partial \alpha} = -x \sin \alpha + y \cos \alpha = 0
+   \]
+
+   \item  联立方程组：
+   \[
+   \begin{cases}
+   x \cos \alpha + y \sin \alpha = p \\
+   -x \sin \alpha + y \cos \alpha = 0
+   \end{cases}
+   \]
+
+   \item 消去参数 \( \alpha \)：\\
+   将两式分别平方后相加：
+   \[
+   x^2 (\cos^2 \alpha + \sin^2 \alpha) + y^2 (\sin^2 \alpha + \cos^2 \alpha) = p^2 \implies x^2 + y^2 = p^2
+   \]
+\end{enumerate}
+该圆即为直线族的包络。
+\end{solution}
+
+
+\begin{example}
+求曲线族 \( (y - C)^2 - \frac{2}{3}(x - C)^3 = 0 \) 的包络。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 设 \( \Phi(x, y, C) = (y - C)^2 - \frac{2}{3}(x - C)^3 = 0 \)，对 \( C \) 求偏导：\\
+   \[
+   \frac{\partial \Phi}{\partial C} = -2(y - C) + 2(x - C)^2 = 0 \implies y - C = (x - C)^2
+   \]
+   \item  联立方程组并消去 \( C \)：\\
+   将 \( y = C + (x - C)^2 \) 代入原曲线族方程：
+   \[
+   [(x - C)^2]^2 - \frac{2}{3}(x - C)^3 = 0 \implies (x - C)^3 \left( (x - C) - \frac{2}{3} \right) = 0
+   \]
+   - 若 \( (x - C)^3 = 0 \)，则 \( C = x \)，代入 \( y = C + (x - C)^2 \) 得 \( y = x \)（检验：代入原方程得 \( 0 - \frac{2}{3} \cdot 0 = 0 \)，但该曲线是曲线族中 \( C = x \) 的退化情况，非包络）；
+   - 若 \( (x - C) - \frac{2}{3} = 0 \)，则 \( C = x - \frac{2}{3} \)，代入 \( y = C + (x - C)^2 \) 得 \( y = x - \frac{2}{3} + \left( \frac{2}{3} \right)^2 = x - \frac{2}{9} \)。
+
+    \item 检验包络：\\
+   曲线 \( y = x - \frac{2}{9} \) 不包含在原曲线族中，且过其上每一点均有原曲线族中的曲线相切，故为包络。
+\end{enumerate}
+\end{solution}
+
+
+\subsection{奇解的定义与求法}
+
+\begin{definition}[奇解]
+若微分方程的某一个解满足：该解上每一点的唯一性不成立（即每一点至少还有另一个解通过），则该解称为方程的奇解。
+
+
+\end{definition}
+
+\begin{remark}
+     \begin{enumerate}
+         \item 一阶微分方程通解的包络（若存在）必为奇解
+         \item 一阶微分方程的奇解（若存在）必为其通解的包络
+     \end{enumerate}
+\end{remark}
+
+\subsubsection{奇解的求法}
+\begin{enumerate}
+    \item 先求方程的通解，再求通解的包络（即 \( C \)-判别曲线），检验后得到奇解
+    \item 对一阶隐式方程 \( F(x, y, y') = 0 \)，奇解包含在由以下方程组消去 \( p = y' \) 得到的曲线（称为 \( P \)-判别曲线）之中：
+\[
+\begin{cases}
+F(x, y, p) = 0 \\
+\frac{\partial F}{\partial p}(x, y, p) = 0
+\end{cases}
+\]
+需检验 \( P \)-判别曲线是否为方程的解，且是否满足奇解定义。
+\end{enumerate}
+
+\begin{example}
+求方程 \( \left( \frac{dy}{dx} \right)^2 + y^2 - 1 = 0 \) 的奇解。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 用 \( P \)-判别曲线法：\\
+    设 \( F(x, y, p) = p^2 + y^2 - 1 = 0 \)，对 \( p \) 求偏导：
+   \[
+   \frac{\partial F}{\partial p} = 2p = 0 \implies p = 0
+   \]
+   \item 联立方程组并消去 \( p \)：\\
+    将 \( p = 0 \) 代入 \( F(x, y, p) = 0 \)，得 \( y^2 - 1 = 0 \implies y = \pm 1 \)。
+    \item 检验：\\
+   - 验证 \( y = \pm 1 \) 是方程的解：\( 0^2 + (\pm 1)^2 - 1 = 0 \)，满足方程；
+   - 方程的通解为 \( y = \sin(x + C) \)（分离变量求解得），\( y = \pm 1 \) 是通解的包络（通解的正弦曲线始终与 \( y = \pm 1 \) 相切），故 \( y = \pm 1 \) 是奇解。
+\end{enumerate}
+\end{solution}
+
+\begin{example}
+求方程 \( y = 2x \frac{dy}{dx} - \left( \frac{dy}{dx} \right)^2 \) 的奇解。
+\end{example}
+
+\begin{solution}
+\begin{enumerate}
+    \item 用 \( P \)-判别曲线法：\\
+    设 \( F(x, y, p) = 2x p - p^2 - y = 0 \)，对 \( p \) 求偏导：
+   \[
+   \frac{\partial F}{\partial p} = 2x - 2p = 0 \implies p = x
+   \]
+   \item 联立方程组并消去 \( p \)：\\
+   将 \( p = x \) 代入 \( F(x, y, p) = 0 \)，得 \( y = 2x \cdot x - x^2 = x^2 \)。
+   \item 检验：\\
+   验证 \( y = x^2 \) 是否为方程的解：计算 \( y' = 2x \)，代入方程右边得 \( 2x \cdot 2x - (2x)^2 = 4x^2 - 4x^2 = 0 \neq x^2 \)，故 \( y = x^2 \) 不是方程的解。因此，该方程没有奇解。
+\end{enumerate}
+\end{solution}
+
+1.文档中的章节不用手动编号，仅将章节名字放在\section{章节名字}中即可
+2.最高级为chapter 顺序往下编排
+3.文档中其他需要编号的地方采用enumerate环境
+4.将公式中的d换为\mathrm{d}
+5.注的内容放在remark环境中

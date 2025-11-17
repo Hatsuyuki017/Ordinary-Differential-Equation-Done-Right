@@ -1,0 +1,137 @@
+\chapter{绪论}
+\section{常微分方程的基本概念}
+\subsection{微分方程}
+\begin{definition}[微分方程]\label{def: 1.2 diffeq}
+    含有未知函数和未知函数的导数的方程
+\end{definition}
+\subsubsection{分类}
+\noindent 按照定义域区分：
+\begin{enumerate}
+    \item 实值微分方程
+    \item 复值微分方差
+\end{enumerate}
+\noindent 按照自变量个数区分：
+\begin{enumerate}
+    \item \textbf{常微分方程}
+    单个自变量，未知函数是一元函数
+    \item \textbf{偏微分方程}
+    多个自变量，位置函数是多元函数
+\end{enumerate}
+
+\begin{definition}[微分方程的阶数]
+    微分方程中出现的未知函数\textbf{最高阶}导数的阶数
+\end{definition}
+
+n阶微分方程：
+    \begin{itemize}
+        \item \textbf{隐式结构}
+        \begin{equation}
+            F(x,y,y',\dots,y^{(n-1)},y^{(n)})=0
+        \end{equation}\label{eq:1.2 diffeq_v}
+        \item  \textbf{显式结构}
+        \begin{equation}
+            y^{(n)}=f(x,y,\dots ,y^{(n-1)})
+        \end{equation}\label{eq:1.2 diffeq_i}
+    \end{itemize}
+    
+\subsubsection{线性与非线性方程}
+\begin{definition}[n阶线性微分方程]\label{def:1.2 n-lindifeq}
+    \begin{equation}
+        y^{(n)}+a_1(x)y^{(n-1)}+\dots+a_{n-1}(x)y'+a_n(x)y=f(x)
+    \end{equation}
+    \textbf{注：}当$f(x)\equiv0$时，为n阶齐次线性微分方程，反之为n阶非齐次线性微分方程
+\end{definition}
+
+\subsubsection{微分方程的解}
+\begin{definition}[解]\label{def:1.2 sol}
+    使$F(x,y,y',\dots,y^{(n)})$恒成立的函数$y=\varphi(x)$
+    \begin{equation*}
+        F(x,\varphi(x),\dots,\varphi^{(n)}(x))\equiv0
+    \end{equation*}
+\end{definition}
+
+\noindent \textbf{解的分类：}
+\begin{itemize}
+    \item \textbf{通解}\\
+    n阶微分方程的解中含有n个任意常数，且这n个任意常数\textbf{独立}.
+    \begin{equation*}
+        y=\varphi(x,C_1,\dots C_n)
+    \end{equation*}
+    \item \textbf{特解}\\
+    \textbf{不含}任意特定常数的解
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{显式解}
+    可以显式地写出$y=y(x)$
+    \item \textbf{隐式解}
+    $x,y$的关系只能通过关系式$\Phi(x,y)$表示
+    \begin{example}
+        一阶微分方程：
+        \begin{equation}
+            \frac{dy}{dx}=-\frac{x}{y}
+        \end{equation}\label{eq:1.2 diffeq}
+        有解：
+        \begin{align}
+            y&=\sqrt{1-x^2}\\
+            y&=-\sqrt{1-x^2}
+        \end{align}\label{eq:1.2 sol_v}
+        也可用关系式：
+        \begin{equation}
+            x^2+y^2=1
+        \end{equation}\label{eq:1.2 sol_i}
+        表达，其中\ref{eq:1.2 sol_v}就是方程\ref{def: 1.2 diffeq}的显式解，\ref{eq:1.2 sol_i}是隐式解
+    \end{example}
+\end{itemize}
+
+\begin{definition}[定解条件]
+    为了求出微分方程一个特解所给出的条件
+\end{definition}
+
+\begin{definition}[定解问题]
+    求微分方程满足定解条件的问题
+\end{definition}
+
+\begin{definition}[初值条件]
+    对微分方程\ref{eq:1.2 diffeq_i}，初值条件是指如下的n个条件：
+    \begin{equation}
+        \text{当}x=x_0\text{时},\quad y=y_0,\quad y'=y'_0,\cdots,y^{(n-1)}=y_0^{(n-1)}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[初值问题]
+    当定值条件为初值条件时的定解问题
+\end{definition}
+
+\subsubsection{积分曲线与向量场}
+\begin{definition}[积分曲线]\label{def:}
+    一阶微分方程：
+    \begin{equation}
+        \frac{dy}{dx}=f(x,y)
+    \end{equation}
+    的解$y=\varphi(x)$表示$Oxy$平面上的一条曲线，称为微分方程的\textbf{积分曲线}，而通解$y=\varphi(x,c)$表示平面上的一族曲线，称为微分方程的\textbf{积分曲线族}，特解$\varphi(x_0)=y_0$则为过点$(x_0,y_0)$的一条积分曲线.
+\end{definition}
+\begin{note}
+    积分曲线上过每一点的切线斜率$\frac{dy}{dx}$为方程右端$f(x,y)$在该处的值.反之，如果有一条曲线，其上每一点的切线斜率都等于$f(x,y)$，则此曲线为积分曲线.
+\end{note}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure/Chapter1/Figure_1.png}
+    \caption{方程}
+    \label{fig:placeholder}
+\end{figure}
+\begin{definition}[向量场]
+    
+\end{definition}
+\begin{definition}[线素场]
+    
+\end{definition}
+
+\subsubsection{微分方程组}
+\subsubsection{驻定与非驻定，动力系统}
+\subsubsection{相空间和轨线}
+\subsubsection{雅可比矩阵与函数相关性}
+以方程$y''-y=0$为例通过\textbf{雅可比矩阵}分析常数$C_1,C_2$的独立性：
+\begin{definition}[雅可比行列式]
+    
+\end{definition}

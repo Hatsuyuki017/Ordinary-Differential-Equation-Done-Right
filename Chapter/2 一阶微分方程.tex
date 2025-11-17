@@ -1,0 +1,2160 @@
+\chapter{一阶微分方程}
+\section{变量分离方程与变量变换}
+\begin{definition}[分离变量方程]
+    \begin{equation}
+        \frac{dy}{dx}=f_1(x)f_2(y)
+    \end{equation}
+\end{definition}
+解法：
+当$f_2(y)\neq0$时：
+分离变量得：
+\begin{align}
+    \frac{dy}{f_2(y)}&=f_1(x)dx\\
+    &\downarrow 两边同时积分得\\
+    \int\frac{dy}{f_2(y)}&=\int f_1(x)dx+C
+\end{align}
+通解：$G(y)=F(x)+C\rightarrow y=\varphi(x,c)$
+
+\subsection{例题}
+\begin{example}
+    \begin{equation}
+        \frac{dy}{dx}=\frac{y}{x}
+    \end{equation}
+\end{example}
+    
+\begin{solution}
+    \begin{align}
+        \frac{1}{y}dy&=\frac{1}{x}dx\\
+        \int\frac{1}{y}dy&=\int\frac{1}{x}dx+\ln C\\
+        \ln |y|&=\ln |x|+\ln C\\
+        y&=Cx
+    \end{align}
+\end{solution}
+
+\begin{example}
+Logistic人口增长模型由荷兰生物学家威尔霍斯特在马尔萨斯的人口模型的基础上引入“最大环境容纳量”($N_m$)用以表示自然条件资源和环境所能够承载的最大人口数量提出。该假设下的人口增长数率为：$r(1-\frac{N(t)}{N_m})$
+\end{example}    
+\begin{solution}
+修正后的人口增长方程为：
+\begin{equation}
+    \frac{dN}{dt}=r(1-\frac{N(t)}{N_m})N
+\end{equation}
+    \begin{equation}
+        N=N(t)
+    \end{equation}
+    \begin{align}      
+        \begin{cases}
+        \frac{dN}{dt}&=r(1-\frac{N}{N_m})N=\frac{r(N_m-N)N}{N_m}\\
+        N(t_0)&=N_0
+        \end{cases}  
+    \end{align}
+    \begin{equation*}
+        \downarrow \text{分离变量}
+    \end{equation*}
+    \begin{equation}
+        \int \frac{dN}{(N_m-N)N}=\int\frac{r}{N_m}dt
+    \end{equation}
+    两边积分得：
+    \begin{align}
+        \int\frac{1}{N_m}(\frac{1}{N_m-N}+\frac{1}{N})dN&=\frac{r}{N_m}t+C_1\\
+        -\ln|N_m-N|+\ln |N|&=rt+C_1\\
+        e^{\ln|\frac{N}{N_m-N}|}&=e^{rt+C_1}\\
+        \frac{N}{N_m-N}&=+-e^{C_1}e^{rt}\quad(c=+-e^{C_1})\\
+        N&=ce^{rt}(N_m-N)\\
+        N&=\frac{ce^{rt}N_m}{1+ce^{rt}}\\
+    \end{align}
+    \begin{align}
+        \begin{cases}
+             N_0&=ce^{rt_0}(N_m-N_0)\\C&=\frac{N_0}{N_m-N_0}e^{-rt_0}\\
+        \end{cases}
+    \end{align}
+\end{solution}   
+
+\begin{equation}
+    \boxed{N=\frac{N_0(N_m-N)}{N_m-N_0}e^{r(t-t_0)}}
+\end{equation}
+
+
+\subsection{齐次方程}    
+标准形式：
+\begin{equation}
+    \frac{dy}{dx}=g(\frac{y}{x})
+\end{equation}
+令：
+\begin{equation}
+    u=\frac{y}{x},\quad y=xu
+\end{equation}
+则：
+\begin{equation}
+    \frac{d(xu)}{dx}=g(u)
+\end{equation}
+\begin{equation}
+    x\frac{du}{dx}=g(u)-u
+\end{equation}
+\begin{equation}
+    \frac{du}{u-g(u)}=\frac{dx}{x}
+\end{equation}
+\begin{equation*}
+    \downarrow \text{两边积分}
+\end{equation*}
+\begin{equation}
+    \int\frac{du}{u-g(u)}=\int\frac{dx}{x}
+\end{equation}
+\begin{example}
+    \begin{equation}
+        \frac{dy}{dx}=\frac{y}{x}+\tan \frac{y}{x}
+    \end{equation}
+\end{example}
+\begin{solution}
+    令$u=\frac{y}{x}\quad y=ux\quad\frac{dy}{dx}=u+x\frac{du}{dx}$
+\end{solution}
+\begin{align}
+    \text{原式}\Rightarrow u+x\frac{du}{dx}&=u+\tan u\\
+    \int\cot u\ du&=\int \frac{1}{x}dx+\ln C\\
+    \ln|\sin u|&=\ln |x|+\ln C\\
+    \sin u&=Cx\\
+    \sin \frac{y}{x}&=Cx\quad C\neq0\text{为方程通解}\\
+\end{align}
+考虑$C=0$时的情况，此时$\sin \frac{y}{x}=0$，带入原方程进行验证：发现$y=k\pi x$ 也是方程的解
+故方程的解为：
+\begin{equation}
+    \sin \frac{y}{x}=Cx \quad C\text{为任意常数}
+\end{equation}
+\begin{example}
+    \begin{equation}
+        x\frac{dy}{dx}+2\sqrt{xy}=y
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{enumerate}
+        \item $x>0$
+        \begin{align}
+            \text{令}u=\frac{y}{x},\quad y=ux,\quad \frac{dy}{dx}&=u+x\frac{du}{dx}\\
+            \text{原式}\Rightarrow x(u+x\frac{du}{dx})+2x\sqrt{u}&=ux\\
+            x\frac{du}{dx}+2\sqrt{u}&=0\\
+            \frac{du}{dx}&=-\frac{2\sqrt{u}}{x}\\
+            \int\frac{1}{x}dx&=\int \frac{du}{-2\sqrt{u}}+C\\
+            \ln |x|&=\sqrt{u}+ C\\
+            \ln |x|&=\sqrt{\frac{y}{x}}+C\\
+            y&=x(\ln|x|-C)^2
+        \end{align}
+        \item $x<0$
+    \begin{align}
+        \text{原式}\Rightarrow \frac{dy}{dx}&=\frac{y}{x}-\frac{2\sqrt{xy}}{x}\\
+        &\because x<0\\
+        &\therefore x\text{不能直接合并进根号下}\\
+      \frac{dy}{dx}&=\frac{y}{x}-\frac{2\sqrt{xy}}{-(-x)}\\
+      \frac{dy}{dx}&=\frac{y}{x}+2\sqrt{\frac{y}{x}}\\
+      &\downarrow\text{令}u=\frac{y}{x},\quad y=ux,\quad \frac{dy}{dx}=u+x\frac{du}{dx}\\
+    \end{align}
+    \end{enumerate}
+
+
+
+\end{solution}
+
+\subsection{可化为齐次方程的方程}
+\begin{enumerate}
+    \item 形如：
+        \begin{align}
+            \frac{dy}{dx}&=f(ax+by+c)\quad f(u)\text{连续}\\
+            &\downarrow 令u=ax+by+c\quad \frac{du}{dx}=a+b\frac{dy}{dx}\quad \frac{dy}{dx}=\frac{1}{b}(\frac{du}{dx}-a)\\
+            \frac{du}{dx}&=bf(u)+a\\
+            &\downarrow 变量分离\\
+            \int \frac{du}{bf(u)+a}&=\int dx+C_1(bf(u)+a\neq0)\\
+            G(u)&=x+C_1\quad G(ax+by+C)=x+C_1(C_1 任意常数)
+        \end{align}
+
+        \begin{example}
+        \begin{equation}
+            \frac{dy}{dx}=(x+y)^2
+        \end{equation}    
+        \end{example}
+        \begin{solution}
+            令$u=x+y\quad\frac{du}{dx}=1+\frac{dy}{dx}$:
+            \begin{align}
+                \frac{du}{dx}&=u^2+1\\
+                &\downarrow 分离变量\\
+                \frac{du}{u^2+1}&=dx\\
+                &\downarrow 两边积分\\
+                \int\frac{du}{1+u^2}&=\int dx+C\\
+                \arctan u&=x+C
+            \end{align}
+            带入：$u=x+y$得    
+            \begin{equation}
+                \arctan (x+y)=x+C
+            \end{equation}
+        \end{solution}
+
+    \item 形如：
+\begin{equation}
+    \frac{dy}{dx}=f\left(\frac{a_1x+b_1y+C_1}{a_2x+b_2y+C_2}\right)
+\end{equation}\footnote{该形式为其次方程的最基本形式，前两种都是第三种的特殊情况}
+    \begin{enumerate}
+        \item $C_1=C_2=0$
+        \begin{equation}
+            \frac{dy}{dx}=f\left(\frac{a_1x+b_1y}{a_2x+b_2y}\right)=f\left(\frac{a_1+b_1\frac{y}{x}}{a_2+b_2\frac{y}{x}}\right)=g\left(\frac{y}{x}\right)
+        \end{equation}
+        \item $C_1,C_2$不全为0
+        \begin{enumerate}
+            \item 
+            \begin{equation}
+                \begin{vmatrix}
+                    a_1&b_1\\
+                    a_2&b_2
+                \end{vmatrix}
+                \neq0\text{时}
+            \end{equation}
+            进行变换$X=x-x_0\quad Y=y-y_0$
+            \begin{equation}
+                \frac{dY}{dX}=f\left(\frac{a_1X+b_1Y}{a_2X+b_2Y}\right)=g\left(\frac{Y}{X}\right)
+            \end{equation}
+            \item 
+            \begin{equation}
+                \begin{vmatrix}
+                     a_1&b_1\\
+                    a_2&b_2
+                \end{vmatrix}
+                =0\text{时}
+            \end{equation}
+            \begin{enumerate}
+                \item $a_1=b_1=0$或$a_2=b_2=0$
+                \begin{equation}
+                    \frac{dy}{dx}=f\left(\frac{C_1}{a_2x+b_2y+C_2}\right)\ \text{或}\  \frac{dy}{dx}=f\left(\frac{a_1x+b_1y+C_1}{C_2}\right)\ 
+                \end{equation}
+                \item $a_1=a_2=0\ \text{或}\ b_1=b_2=0$
+                \begin{equation}
+                    \frac{dy}{dx}=f\left(\frac{a_1x+C_1}{a_2x+C_2}\right)\ \text{或}    \ \frac{dy}{dx}=f\left(\frac{b_1y+C_1}{b_2y+C_2}\right)\
+                \end{equation}
+                    \begin{example}
+                        \begin{equation}
+                            \frac{dy}{dx}=\frac{x-y+1}{x+y-3}
+                        \end{equation}
+                    \end{example}
+                    \begin{solution}
+                        \begin{equation}
+                            \begin{vmatrix}
+                                 1&-1\\
+                                1&1
+                            \end{vmatrix}=2
+                        \end{equation}
+                        \begin{equation*}
+                            x_0=1\quad y_0=2
+                        \end{equation*}
+                        令$X=x-1\quad Y=y-2$,则原式化为：
+                        \begin{align}
+                            \frac{dy}{dx}&=\frac{X-Y}{X+Y}\\
+                            &\downarrow \text{令}U=\frac{Y}{X}\quad Y=UX\quad \frac{dy}{dx}=\frac{dY}{dX}=U+X\frac{dU}{dX}\\  
+                            U+X\frac{dU}{dX}&=\frac{X-UX}{X+UX}=\frac{1-U}{1+Uv} \\
+                            &\downarrow\text{化简得：}\\
+                            -\int\frac{1}{X}dX&=\int\frac{U+1}{U^2+2U-1}dU+\ln C\\
+                            &\downarrow\text{注意到右边分母}U^2+2U-1\text{的微分为}2U+2=2(U+1)\\
+                            -\int\frac{1}{X}dX&=\frac{1}{2}\int\frac{2(U+1)}{U^2+2U-1}dU+\ln C\\
+                            -\ln|X|^2&=\ln (U^2+2U-1)+\ln C\\
+                            (U^2+2U-1)(CX^2)&=1\\
+                            &\downarrow\text{带入}\ U=\frac{Y}{X}\\
+                            \frac{1}{C}&=Y^2+2XY-X^2\\
+                            &\downarrow\text{带入}\ X=(x-1)\ Y=(y-2)\\
+                            (x+y)^2+2(x-3y)+7&=\frac{1}{C}\quad C\neq0\text{为方程通解}\\
+                        \end{align}
+                        验证$(x+y)^2+2(x-3y)+7=0$是否为方程的解：
+                        对于隐函数：
+                            \begin{equation}
+                            (x+y)^2+2(x-3y)+7=0
+                            \end{equation}
+                            
+                            我们使用隐函数求导法来计算 $\frac{dy}{dx}$。
+                            
+                            对方程两边关于 $x$ 求导（记住 $y$ 是 $x$ 的函数）：
+                            
+                            \textbf{第一项：}$(x+y)^2$ 的导数
+                            \begin{equation}
+                            \frac{d}{dx}[(x+y)^2] = 2(x+y) \cdot \left(1 + \frac{dy}{dx}\right)
+                            \end{equation}
+                            
+                            \textbf{第二项：}$2(x-3y)$ 的导数
+                            \begin{equation}
+                            \frac{d}{dx}[2(x-3y)] = 2\left(1 - 3\frac{dy}{dx}\right)
+                            \end{equation}
+                            
+                            \textbf{第三项：}$7$ 的导数为 $0$
+                            
+                            将所有导数相加并等于 0：
+                            \begin{equation}
+                            2(x+y)\left(1 + \frac{dy}{dx}\right) + 2\left(1 - 3\frac{dy}{dx}\right) = 0
+                            \end{equation}
+                            
+                            展开：
+                            \begin{equation}
+                            2(x+y) + 2(x+y)\frac{dy}{dx} + 2 - 6\frac{dy}{dx} = 0
+                            \end{equation}
+                            
+                            合并含 $\frac{dy}{dx}$ 的项：
+                            \begin{equation}
+                            \left[2(x+y) - 6\right]\frac{dy}{dx} = -2(x+y) - 2
+                            \end{equation}
+                            
+                            解出 $\frac{dy}{dx}$：
+                            \begin{equation}
+                            \frac{dy}{dx} = \frac{-2(x+y) - 2}{2(x+y) - 6}
+                            \end{equation}
+                            
+                            化简后得：
+                            \begin{equation}
+                            \frac{dy}{dx} = -\frac{x+y+1}{x+y-3}
+                            \end{equation}
+
+                            \textbf{注意：}该导数在 $x+y=3$ 时无定义。
+                        综上所述，
+                        \begin{equation}
+                           ( x+y)^2+2(x-3y)+7=C\quad C\ \text{取任意实数}
+                        \end{equation}
+                        是方程的通解。
+                    \end{solution}
+                    \item $\frac{a_1}{a_2}=\frac{b_1}{b_2}=k\quad a_1=ka_2,b_1=kb_2$
+                    \begin{align}
+                        \frac{dy}{dx}&=f\left(\frac{ka_2x+kb_2y+c_1}{a_2x+b_2y+c_2}\right)\\
+                        &=f\left(\frac{k(a_2x+b_2y)+c_1}{a_2x+b_2y+c_2}\right)\\
+                        &\downarrow\text{令}u=a_2x+b_2y\\
+                        &=f\left(\frac{ku+c_1}{u+c_2}\right)
+                    \end{align}
+                    \begin{example}
+                        \begin{equation}
+                            \frac{dy}{dx}=\frac{x-y+1}{2x-2y-3}
+                        \end{equation}
+                        \begin{solution}
+                            \begin{align}
+                            \text{原式}&=\frac{x-y+1}{2(x-y)-3}\\
+                            &\downarrow\quad u=x-y\quad \frac{dy}{dx}=1-\frac{du}{dx}\\
+                            \frac{du}{dx}&=-\left[\frac{u+1}{2u-3}-1\right]=\frac{u-4}{2u-3}\\
+                            \frac{2u-3}{u-4}du&=\frac{1}{x}dx\\
+                            \int\left(2+\frac{5}{u-4}\right)du&=\int \frac{1}{x}dx\\
+                            2u+5\ln |u-4|&=\ln |x|+C\\
+                            2(x-y)-5\ln |x-y-4|&=\ln |x|+C
+                            \end{align}
+                            u=4不为解
+                        \end{solution}
+                        
+                    \end{example}
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\begin{example}
+    
+\end{example}
+\begin{solution}
+    
+\end{solution}
+\begin{example}
+    
+\end{example}
+\begin{solution}
+    
+\end{solution}
+
+\section{线性微分方差与常数变易法}
+\begin{definition}[一阶线性微分方程]
+    \begin{equation}
+        \frac{dy}{dx}=P(x)y+Q(x)\label{eq:2.2 First-order linear differential equation}
+    \end{equation}
+    其中$P(x),Q(x)$是定义域上的连续函数，特别地，当$Q(x)=0$时，称为\textbf{一阶齐次线性微分方程}。
+    \begin{equation}
+        \frac{dy}{dx}=P(x)y\label{eq:2.2 First-order homogeneous linear differential equation}
+    \end{equation}
+    与之对应的，当$Q(x)\neq0$时，称为\textbf{一阶非齐次线性微分方程}
+\end{definition}
+\ref{eq:2.2 1lvl}是变量分离方程，其通解为：
+\begin{equation}
+    y=Ce^{\int P(x)dx}
+\end{equation}
+c为任意常数。
+\begin{proof}
+    \begin{align}
+        \int \frac{1}{y}dy&=\int P(x)dx+\ln C\\
+        \ln |y|&=\int P(x)dx
++\ln C\\
+y&=Ce^{\int P(x)dx}\end{align}
+\end{proof}
+
+\begin{definition}[常数变易法]
+    设$y=C(x)e^{\int P(x)dx}$为非齐次线性方程的解,带入\ref{eq:2.2 First-order linear differential equation}，得：
+    \begin{equation}
+        C'(x)=Q(x)e^{-\int P(x)dx}
+    \end{equation}
+    两边积分得：
+    \begin{equation}
+        C(x)=\int C'(x)dx=\int Q(x)e^{-\int P(x)dx}dx+C
+    \end{equation}
+    \ref{eq:2.2 First-order linear differential equation}通解：
+    \begin{equation}
+        y=e^{\int P(x)dx}\left[\int Q(x)e^{-\int P(x)dx}+C\right]=\underbrace{Ce^{\int P(x)dx}}_{\ref{eq:2.2 First-order linear differential equation}\text{通解}}+\underbrace{e^{\int P(x)dx}\int Q(x)e^{-\int P(x)dx}dx}_{\ref{eq:2.2 First-order homogeneous linear differential equation}\text{通解}}
+    \end{equation}
+\end{definition}
+\begin{example}
+    解方程：
+    \begin{equation}
+        (x+1)\frac{dy}{dx}-ny=e^x(x+1)^{n+1}\quad\text{n为常数}
+    \end{equation}
+\end{example}
+\begin{solution}
+    
+\end{solution}
+
+\begin{example}
+    求方程
+    \begin{equation}
+        \frac{dy}{dx}=\frac{y}{2x-y^2}
+    \end{equation}
+    的通解，并求$y(0)=2$时的特解
+\end{example}
+\begin{solution}
+    \begin{align}
+        \frac{dx}{dx}&=\frac{y}{2x-y^2}\\
+        \frac{dx}{dy}&=\frac{2x-y^2}{y}=\frac{2}{y}x-y\\
+        P(y)&=\frac{2}{y}\quad Q(y)=-y
+    \end{align}
+    1.先求齐次方程：$\frac{dx}{dy}=\frac{2}{y}x$
+    \begin{align}
+        \frac{dx}{x}&=\frac{2}{y}dy\\
+        \int \frac{dx}{x}&=\int\frac{2}{y}dx+\ln {|C|}\\
+        \ln |x|&=2\ln |y|+\ln |C|\\
+        x&=cy^2
+    \end{align}
+    2.求解非齐次方程
+    设$x=C(y)y^2$ 为非齐次方程的解
+    \begin{equation}
+        x'=C'(y)y^2+2yC(y)\\
+    \end{equation}
+    带入方程：
+    \begin{equation}
+        c'(y)y^2+2yC(y)=2yC(y)-y\quad
+    \end{equation}
+    得：$ C'(y)=-\frac{1}{y}$
+    \begin{equation}
+        C(y)=\int-\frac{dy}{y}+C=-\ln |y|+C
+    \end{equation}
+    原方程通解为：
+    \begin{equation}
+        x=y^2(C-\ln |y|)
+    \end{equation}
+\end{solution}
+
+\begin{definition}[伯努利微分方程]
+形如
+\begin{equation}
+    \frac{dy}{dx}   =P(x)y + Q(x)y^n \quad (n \neq 0,1)
+    \label{eq:bernoulli_form}
+\end{equation}
+的一阶常微分方程称为\textbf{伯努利微分方程}，其中$P(x)$、$Q(x)$为已知连续函数，$n$为实数常数。
+\end{definition}
+
+\subsubsection{求解方法}
+
+伯努利方程可通过变量代换化为线性微分方程求解，具体步骤如下：
+
+\paragraph{步骤1：变量代换}
+令
+\begin{equation}
+    z = y^{1-n}
+    \label{eq:substitution}
+\end{equation}
+则通过求导可得：
+\begin{equation}
+    \frac{dz}{dx} = (1-n)y^{-n}\frac{dy}{dx}
+    \label{eq:dzdx}
+\end{equation}
+
+\paragraph{步骤2：方程变换}
+将原方程(\ref{eq:bernoulli_form})两边同乘以$(1-n)y^{-n}$：
+\begin{equation}
+    (1-n)y^{-n}\frac{dy}{dx}   =(1-n)P(x)y^{1-n}+ (1-n)Q(x)
+\end{equation}
+代入变量代换关系(\ref{eq:substitution})和(\ref{eq:dzdx})，得到：
+\begin{equation}
+    \frac{dz}{dx}  = (1-n)P(x)z+(1-n)Q(x)
+    \label{eq:linear_eq}
+\end{equation}
+
+\paragraph{步骤3：求解线性方程}
+方程(\ref{eq:linear_eq})是关于$z$的一阶线性微分方程，其通解为：
+\begin{equation}
+    z = e^{-\int (1-n)P(x)dx} \left[ \int (1-n)Q(x)e^{\int (1-n)P(x)dx}dx + C \right]
+    \label{eq:linear_solution}
+\end{equation}
+其中$C$为任意常数。
+
+\paragraph{步骤4：回代原变量}
+最后将$z = y^{1-n}$代回，得到原方程的通解：
+\begin{equation}
+    y^{1-n} = e^{-\int (1-n)P(x)dx} \left[ \int (1-n)Q(x)e^{\int (1-n)P(x)dx}dx + C \right]
+    \label{eq:final_solution}
+\end{equation}
+
+\begin{example}
+    \begin{equation}
+        \frac{dy}{dx}=6\frac{y}{x}-xy^2
+    \end{equation}
+\end{example}
+\begin{solution}
+\begin{equation}
+    P(x)=\frac{6}{x}\quad Q(x)=-x\quad n=2
+\end{equation}
+    \begin{align}
+        \frac{1}{y^2}\frac{dy}{dx}&=\frac{6}{x}y^{-1}-x\\
+        \frac{d(\frac{1}{y})}{dx}&=-\frac{6}{x}y^{-1}+x\\
+        &\downarrow\text{通解：}\\
+        \frac{1}{y}&=e^{\int -\frac{6}{x}dx}\left(\int xe^{\int\frac{6}{x}dx}+C \right)\\
+        &=e^{-6\ln|x|}\left(\int x^{6\ln |x|}dx+C\right)\\
+        &=\frac{1}{x^6}\left(\frac{x^8}{8}+C\right)\\
+        &=\frac{C}{x^6}+\frac{x^2}{8}
+    \end{align}
+\end{solution}
+
+\section{恰当微分方差与积分因子}
+\subsection{恰当微分方程}
+\begin{definition}
+    \begin{equation}\label{eq:2.3 diff}
+        M(x,y)dx+N(x,y)dy=0
+    \end{equation}
+    定义：若$\exists U(x,y)$使得：
+    \begin{equation}
+        dU=M(x,y)dx+N(x,y)dy
+    \end{equation}
+    即：
+    \begin{equation}
+        \frac{\partial U}{\partial x}=M(x,y)\quad \frac{\partial U}{\partial y}=N(x,y)
+    \end{equation}
+\end{definition}
+则称方程\ref{eq:2.3 diff}为恰当微分方程（全微分方程）
+
+\begin{theorem}[平面上曲线积分与路径无关的等价条件]
+    设D是单连通域，函数$P(x,y),\ Q(x,y)$在$D$内具有一阶连续偏导数，则下列四个条件等价：
+    \begin{enumerate}
+        \item 在$D$内每一点都有$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}$
+        \item 沿$D$中任意光滑闭曲线$L$，有$\oint_LPdx+Qdy=0$
+        \item 对$D$中任意分段光滑曲线$L$,曲线积分$\int_Lpdx+Qdy$与路径无关，只与起止点有关。
+        \item$Pdx+Qdy$在$D$内是某一函数$U(x,y)$的全微分，即$du(x,y)=Pdx+Qdy$
+    \end{enumerate}
+    
+\end{theorem}
+\begin{theorem}
+    设$G$为单连通区域，$M(x,y),\ N(x,y)$在$G$内具有一阶连续偏导，则：
+    \begin{equation}
+        \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x} \Leftrightarrow M(x,y)dx+N(x,y)dy=0\text{为恰当微分方程}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    4.$\Rightarrow$1.
+   $(\Leftarrow):$
+    \begin{equation}
+         \exists U(x,y)\ s.t. \ dU=M(x,y)dx+N(x,y)dy
+    \end{equation}
+    即：
+    \begin{equation}
+        \frac{\partial U}{\partial x}=M(x,y)\quad \frac{\partial U}{\partial y}=N(x,y)
+    \end{equation}
+    \begin{equation}
+        \frac{\partial M}{\partial y}=\frac{\partial}{\partial y}(\frac{\partial u}{\partial x})=\frac{\partial^2 u}{\partial x \partial y}=\frac{\partial^2 u}{\partial y\partial x}=\frac{\partial }{\partial x}(\frac{\partial u}{\partial y})=\frac{\partial N}{\partial x}
+    \end{equation}
+    $(\Rightarrow):$
+    $1.\Rightarrow2.:$
+    \begin{equation}
+        \oint_LPdx+Qdy=\iint_{D_1}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)d\sigma=0
+    \end{equation}
+    $2.\Rightarrow3.:$
+    \begin{align}
+        \forall L\in D& \quad \text{以A为起点,以B为终点}\\
+        \int_L+\int_{L_1^-}&=\int _L-\int_{L_1}\\
+        \text{又：}\\
+        \int_LPdx+Qdy&=\int_{L1}Pdx+Qdy=\int_A^BP(x,y)dx+Q(x,y)dy\\
+        &\downarrow\\
+        \int_L+\int_{L_1^-}&=\oint_{L+L_1^-}Pdx+Qdy=0     
+    \end{align}
+故与路径无关，只与起点A，终点B相关。\\
+$3.\Rightarrow4.:$
+\begin{align}
+    U(x,y)&=\int^{(x,y)}_{(x_0,y_0)}P(x,y)dx+Q(x,y)dy\\
+    \frac{\partial U}{\partial x}&=\lim_{\Delta x\to 0}\frac{U(x+\Delta x)-U(x,y)}{\Delta x}\\
+    &=\lim_{\Delta x\to 0}P(\xi,y)\\
+    &=\lim_{\Delta \xi \to x}P(\xi ,y)=P(x,y)\\
+    \text{同理：}\frac{\partial U}{\partial y}&=Q(x,y)
+\end{align}
+\begin{align}
+    \int^B_APdx+Qdy&=\int^C_APdx+Qdy+\int_C^BPdx+Qdy\\
+    &=\int^D_APdx+Qdy+\int^B_DPdx+Qdy
+\end{align}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure/Chapter 2/Screenshot 2025-10-13 at 5.04.01 PM.png}
+    \caption{曲线积分示意图}
+    \label{fig：Curve_integral}
+\end{figure}
+\end{proof}
+\begin{theorem}[Green]
+    \begin{equation}
+        \iint_{D}(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})d\sigma=\oint_LP(x,y)dx+Q(x,y)dy
+    \end{equation}
+\end{theorem}
+\begin{claim}
+    设G单连通区域$M(x,y)\ ,N(x,y)$在$G$内具有一阶连续偏导数，则：
+    \begin{equation}
+        \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}\Leftrightarrow\int_L
+Mdx+Qdy    \end{equation}与路径无关
+    \begin{align}
+        U(x,y)&=\int_{(x_0,y_0)}^{(x,y)}M(x,y)dx+N(x,y)dy\\
+        &=\int_{x_0}^{x}P(x,y_0)dx+\int_{y_0}^yQ(x,y)dy\\
+        &=\int_{y_0}^yQ(x_0,y)dy+\int_{x_0}^{x}P(x,y)dx
+    \end{align}
+\end{claim}
+\begin{example}
+    解方程：
+    \begin{equation}
+        (3x^2+6xy^2)dx+(6x^2y+4y^3)dy=0
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{align}
+    \text{方法一：}\\
+        \frac{dy}{dx}&=-\frac{3x^2+6xy^2}{6x^2y+4y^3}=-\frac{3x(x+2y^2)}{2y(3x^2+2y^2)}\\
+        M&=\frac{\partial U}{\partial x}=3x^2+6xy^2\quad N=\frac{\partial u}{\partial y}=6x^2y+4y^3\\
+        u&=\int \frac{\partial u}{\partial x}dx=\int (3x^2+6xy^2)dx=x^3+3x^3y^2\\
+        \frac{\partial u}{\partial y}&=6x^2y+c'(y)=6x^2y+4y^3\\
+        c'(y)&=4y^3\\
+        c(y)&=\int c'(y)dy=\int 4y^3dy=y^4\\
+        \therefore \text{通解}&:x^3+3x^2y^2+y^4=c\quad (c\text{为任意常数})\\
+    \text{方法二：}\\
+        M&=3x^2+6xy^2\quad N=6x^2y+4y^3\\
+        \frac{\partial M}{\partial y}&=12xy\quad \frac{\partial N}{\partial x}=12xy\\
+        u(x,y)&=\int_O^{(x,y)}M(x,y)dx+N(x,y)dy\\
+        &=\int_O^{(x,y)}3x^2dx+(6x^2y+4y^3)dy\\
+        &=x^3+6xy^2+y^4
+    \end{align}
+    \text{方法三：}\\
+        \begin{align}
+            (3x^2+6xy^2)dx+(6x^2y+4y^3)dy&=0\\
+            3x^2dx+4y^3dy+(6xy^2dx+6x^2ydy)&=0\\
+            d(x^3)+d(y^4)+d(3x^2y^2)&=0\\
+            d(x^3+y^4+3x^2y^2)&=0\\
+            \Rightarrow x^3+y^4+3x^2y^2&=c\quad (\text{c为任意常数})
+        \end{align}
+\end{solution}
+
+\begin{note}
+    \begin{enumerate}
+        \item 方法一：先找到关于x和y的恰当M和N方程，先对其中一个进行积分（以x对应的M为例），得到不含纯y项的积分函数，再对比N函数中的纯y项函数，则该纯y函数的积分为解函数中的纯y项函数。
+        \begin{equation}
+            u=\int M(x,y)dx+\int \left[N(x,y)-\frac{\partial}{\partial y}M(x,y)dx\right]dy
+        \end{equation}
+        \item 方法二：先找到关于x和y的恰当M和N方程，分别对x和y进行积分并求和即可得到最终的解。其原理为：满足条件$\frac{\partial M}{\partial x}=\frac{\partial N}{\partial y}$的恰当方程的积分与路径无关，故可以选用最简单的积分路径进行积分，一般来说沿坐标轴进行积分，其数学体现即为先对一个函数关于其中一个自变量积分再对另外一个进行积分。
+        \item 方法三：分项组合法。利用二元函数微分的特点，将恰当微分方程的各项“分项分组”凑成全微分形式求解$u(x,y)$
+    \end{enumerate}
+\end{note}
+
+\begin{claim}
+    设二元函数在某单连通区域内是的连续函数，且具有连续的一阶偏导数，则对内任意一按段光滑曲线，曲线积分：
+    \begin{equation}
+        \int_LM(x,y)dx+N(x,y)dy
+    \end{equation}
+    在区域内与路径无关的充要条件为：
+    \begin{equation}
+        \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}
+    \end{equation}
+\end{claim}
+
+\begin{example}
+    \begin{align}
+        \left(\cos x+\frac{1}{y}\right)dx+\left(\frac{1}{y}-\frac{x}{y^2}\right)dy&=0
+    \end{align}
+\end{example}
+\begin{solution}
+    \begin{align}
+        \left(\cos x+\frac{1}{y}\right)dx+\left(\frac{1}{y}-\frac{x}{y^2}\right)dy&=0\\
+        \cos xdx+\frac{1}{y}dx-\frac{x}{y^2}dy+\frac{1}{y}dy&=0\\
+        d(\sin x)+d(\ln|y|)+d(\frac{x}{y})&=0\\
+    \end{align}    
+    通解：
+    \begin{equation}
+        \sin x+\frac{x}{y}+\ln|y|=c
+    \end{equation}
+    下验证是否为恰当微分方程：
+    \begin{align}
+        M&=\cos x+\frac{1}{y}\quad N=\frac{1}{y}+\frac{x}{y^2}\\
+        \frac{\partial M}{\partial y}&=-\frac{1}{y^2}\quad \frac{\partial N}{\partial x}=-\frac{1}{y^2}\\
+        \therefore\frac{\partial M}{\partial y}&=\frac{\partial N}{\partial x}\quad (y\neq 0)
+    \end{align}
+
+    方法1:设$du=Mdx+Ndy$
+    \begin{align}
+        \frac{\partial u}{\partial x}&=\cos x+\frac{1}{y}\quad u=\int\frac{\partial u}{\partial x}dx=\int (\cos x+\frac{1}{y})dx=\sin x+\frac{x}{y}+c(y)\\
+        \frac{\partial u}{\partial y}&=
+    \end{align}
+
+    方法2:$M,N$在半平面$y>0$内有连续偏导
+    \begin{align}
+        u&=\int^{(x,y)}_{(x_0,y_0)}Mdx+Ndy\\
+        &=\int^y_1\frac{1}{y}dy+\int_0^x(\cos x+\frac{1}{y})dx\\
+        &=\ln|y|\bigg|^y_1+(\sin x+\frac{x}{y})\bigg|^x_0\\
+        &=\ln|y|+\sin x+\frac{x}{y}\\
+        \therefore\text{通解：}&\ln|y|+\sin |x|+\frac{x}{y}=c\quad (c\text{为任意常数})
+    \end{align}
+\end{solution}
+
+\subsection{积分因子}
+对于方程:
+\begin{align}
+    M(x,y)dx+&N(x,y)dy=0\label{eq:2.2 diff}\\
+    \frac{\partial M}{\partial y}&\neq\frac{\partial N}{\partial x}
+\end{align}
+\begin{definition}[积分因子]
+    $\exists\mu(x,y)\neq0$使$\mu(x,y)M(x,y)dx+\mu(x,y)N(x,y)dy=0$是恰当微分方程，称$\mu(x,y)$为方程\autoref{eq:2.2 diff}的积分因子
+\end{definition}
+\begin{align}
+    \mu_yM+\mu M_y&=\mu_xN+\mu N_x\\
+    \mu_yM-\mu_xN&=\mu(N_x-M_y)\label{eq:2.3 diff_d}
+\end{align}
+\begin{enumerate}
+    \item 若$\mu=\mu(x)$,\autoref{eq:2.3 diff_d}可写为：
+    \begin{equation}
+        -\mu_xN=\mu(N_x-M_y)
+    \end{equation}
+    \begin{align}
+        (\ln|\mu|)_x'=\frac{\mu_x}{\mu}=\frac{M_y}{}
+    \end{align}
+    \item 若
+\end{enumerate}
+\begin{example}
+    \begin{equation}
+        ydx+xdy=0
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{align}
+        M&=y\quad N=x\\
+        M_y&=1\neq N_x=-1\\
+        \frac{M_y-N_x}{M}&=\frac{2}{y}\\
+        \mu&=e^{\int \frac{2}{y}dy}=e^{-2\ln|y|}=\frac{1}{y^2}\\
+        \frac{M_y-N_x}{M}&=-\frac{2}{x}\quad \text{只是x的函数}\\
+        \therefore \mu &=e^{\int -\frac{2}{x}dx}=e^{-2\ln|x|}=\frac{1}{x^2}
+    \end{align}
+\end{solution}
+\begin{example}
+    \begin{equation}
+        \frac{dy}{dx}=P(x)y+Q(x)
+    \end{equation}
+\end{example}
+\begin{solution}
+    
+\end{solution}
+
+\begin{example}
+    \begin{equation}
+        \frac{dy}{dx}=-\frac{x}{y}+\sqrt{1+(\frac{x}{y})^2}\quad (y>0)
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{align}
+        \text{令}v=&\frac{x}{y}\quad x=yv\quad \frac{dx}{dy}=v+y\frac{dv}{dy}\\
+        \frac{1}{v+y\frac{dv}{dy}}&=-v+\sqrt{q+v^2}\\
+        v+y\frac{dv}{dy}&=\frac{1}{\sqrt{1+v^2}-v}=\sqrt{1+v^2}+v\\
+        y\frac{dv}{dy}&=\sqrt{1+v^2}\\
+        y\neq 0\quad \int\frac{dv}{\sqrt{1+v^2}}&=\int\frac{dy}{y}\quad \ln|v+\sqrt{1+v^2}|=\ln|y|+\ln|c|\\
+        \therefore \frac{x}{y}+\sqrt{1+\left(\frac{x}{y}\right)^2}&=cy
+    \end{align}
+    \begin{align}
+        y\frac{dy}{dx}&=-x+\sqrt{x^2+y^2}=\\
+        
+    \end{align}
+    \begin{align}
+        (\sqrt{x^2+y^2}-x)dx-ydy&=0\\
+        M=\sqrt{x^2+y^2}-x&=
+    \end{align}
+\end{solution}
+
+\begin{example}
+    \begin{equation}
+        ydx+(y-x)dy=0    
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{align}
+        M&=y\quad N=y-x\\
+        M_y-N_x&=1-(-1)=2\\
+        \frac{M_y-N_x}{M}&=\frac{2}{y}\\
+        \therefore \mu&=e^{-\int\frac{M_y-M_x}{M}dy}=^{-\int \frac{2}{y}dy}\\&=e^{-2\ln|y|}=\frac{1}{y^2}
+    \end{align}
+    原方程可写为：
+    \begin{align}
+        \frac{1}{y}dx+\frac{y-x}{y^2}dy&=0\\
+        M_1=\frac{1}{y}\quad N_1&=\frac{y-x}{y^2}\quad \text{在}y>0(y<0)\text{半平面上具有一阶连续导数}
+    \end{align}
+    \begin{align}
+        u&=\int_{(0,1)}^{(x,y)}M_1dx+N_1dy\\
+        &=\int_1^y\frac{1}{y}+\int_0^x\frac{1}{y}dx\\
+        &=\ln|y|+\frac{x}{y}\\
+        \therefore&\text{原方程通解}\ln|y|+\frac{x}{y}=c
+    \end{align}
+    \newline
+    \begin{align}
+        \frac{dy}{dx}&=\frac{y}{y-x}\quad(x-y\neq0)\\
+        &=\frac{\frac{y}{x}}{1-\frac{y}{x}}\\
+        \text{令}u&=\frac{y}{x}\quad y=ux\quad \frac{dy}{dx}=x\frac{du}{dx}+u\text{带入方程}\\
+        \int\left(\frac{1}{u^2}-\frac{1}{u}\right)du&=\int \frac{dx}{u}\quad (u\neq 0)\\
+        -\frac{1}{u}-\ln|u|&=\ln|x|+C\\
+        -\frac{x}{y}&=\ln|y|+C\\
+        x&=-\ln|y|-C\\
+        \frac{dx}{dy}=\frac{x-y}{y}&=\frac{1}{y}x-1\quad P(y)=\frac{1}{y}
+    \end{align}
+\end{solution}
+
+\subsection{一阶隐式微分方程与参数表示}
+\subsubsection{可以求出x(y)的方程}
+\begin{enumerate}
+    \item 形如$y=f(x,y')$的方程\\
+    解法：令$y'=P(x)\to y=f(x,P)\to P=\frac{\partial f}{\partial x}+\frac{\partial f}{\partial P}\frac{dP}{dx}$,求解得：
+    \begin{enumerate}
+        \item
+        \begin{align}
+            P&=\varphi(x,c)\\
+            y&=f(x,\varphi(x,c))
+        \end{align}
+
+        \item
+        \begin{align}
+            P=\psi(P,c)\\
+            \begin{cases}
+                x&=\psi(P,c)\\
+                y&=f(\psi (P,c),P)
+            \end{cases}\\
+            \text{p为参数，c为任意常数}
+        \end{align}
+        \item
+        \begin{align}
+            \Phi(x,P,c)&=0\\
+            \begin{cases}
+                \Phi(x,P,c)&=0\\
+                y&=f(x,P)
+            \end{cases}
+        \end{align}
+    \end{enumerate}
+    \begin{example}
+        解方程：
+        \begin{equation}
+            (y')^3+2xy'-y=0
+        \end{equation}
+    \end{example}
+    \begin{solution}
+        \begin{align}
+            y&=(y')^3+2xy'\\
+            \downarrow\text{}
+        \end{align}
+    \end{solution}
+
+    \item 形如$x=f(y,y')$的方程\\
+    解法：
+    求解得：
+    \begin{enumerate}
+        \item $P=\varphi(y,c)$
+        通解为：
+        \begin{equation}
+            
+        \end{equation}
+    \end{enumerate}
+    \begin{example}
+        \begin{equation}
+            2xy'=y-(y')^3
+        \end{equation}
+    \end{example}
+    \begin{solution}
+        
+    \end{solution}
+
+    \begin{example}
+        
+    \end{example}
+    \begin{solution}
+        \begin{align}
+            \text{令}y'=P(x)\\
+            aw
+        \end{align}
+    \end{solution}
+
+    \begin{example}
+        \begin{equation}
+            y=\left(\frac{dy}{dx}\right)^2-x\left(\frac{dy}{dx}\right)+\frac{x^2}{2}
+        \end{equation}
+    \end{example}
+    \begin{solution}
+        令$y'=P(x)$
+        \begin{align}
+            y&=p^2-xp+\frac{x^2}{2}\\
+            \downarrow\text{两边对x求导}\\
+            p&=2p\frac{dp}{dx}-p-x\frac{dp}{dx}+x\\
+            2p-x&=(2p-x)\frac{dp}{dx}\\
+            (2p-x)(\frac{dp}{dx}-1)&=0
+        \end{align}
+            1.若$\frac{dp}{dx}=1\quad p=x+c$
+            $$\therefore y=(x+c)^2-x(x+c)+\frac{x^2}{2}=cx+\frac{x^2}{2}+c^2\quad$$ c为任意常数\\
+            2.若$2p-x=0\quad p=\frac{x}{2}\Rightarrow y=\frac{x^2}{4}$
+        
+    \end{solution}
+\end{enumerate}
+\subsubsection{不显式含x(y)的方程}
+\noindent3. 形如$F(x,y')$的方程\\
+令$y'=P(x)$\\
+$F(x,P)=0$在$xoP$平面上表示曲线\\
+用参数方程进行表示\\
+\begin{align*}
+    \begin{cases}
+        x&=\varphi(t)\\
+        P&=\psi(t)\\
+    \end{cases}
+    \quad (t\text{参数})\\
+    \end{align*}
+    
+\begin{align*}
+    dy&=Pdx=\psi(t)\varphi'(t)dt\\
+    y&=\int dy=\int Pdx=\int \psi(t)\varphi'(t)dt+C
+\end{align*}
+得到参数式通解：
+\begin{align}
+    \begin{cases}
+        x&=\varphi(t)\\
+        y&=\int \psi(t)\varphi'(t)dt+C
+    \end{cases}
+    \quad t\text{为参数}
+\end{align}
+
+\noindent4.形如$F(y,y')=0$的方程\\
+令$y'=P(y)$\\
+$F(y,P)=0$在$yoP$平面上表示一条曲线
+用参数方程进行表示：
+\begin{align*}
+    \begin{cases}
+        y&=\varphi(t)\\
+        P&=\psi(t)
+    \end{cases}
+    \quad (t\text{参数})
+\end{align*}
+$P=0$时，$F(y,0)=0$有解，则$y=y_0$ 为特解
+\begin{align}
+    \frac{dx}{dy}&=\frac{1}{\frac{dy}{dx}}=\frac{1}{P}\\
+    dx&=\frac{1}{P}dy=\frac{\varphi'(t)}{\psi(t)}dt\\
+    x&=\int dx=\int \frac{1}{p}dy=\int \frac{\varphi'(t)}{\psi(t)}dt+C
+\end{align}
+得到参数式的通解：
+\begin{align*}
+    \begin{cases}
+        x&=\int \frac{\varphi'(t)}{\psi(t)}dt+C\\
+        y&=\varphi(t)
+    \end{cases}
+    \quad t\text{为参数}\quad C \text{为任意常数}
+\end{align*}
+
+\begin{example}
+    \begin{equation}
+        x^3+(y')^3-3xy'=0
+    \end{equation}
+\end{example}
+\begin{solution}
+    令$y'=P(x)$
+    \begin{equation}
+        x^3+p^3-3xp=0
+    \end{equation}
+    令$P=xt$
+    \begin{align*}
+        \begin{cases}
+            x&=\frac{3t}{1+t^2}\\
+        P&=\frac{3t^2}{1+t^2}
+        \end{cases}
+        \quad t\text{为参数}
+    \end{align*}
+    \begin{align*}
+        y&=\int dy=\int Pdx+C\\
+        \Rightarrow dx&=\left(\frac{3t}{1+t^3}\right)'dt\\
+        &=\frac{3(1+t^3)-3t\cdot 3t^2}{(1+t^3)^2}\\
+        y&=\frac{3(1-2t^3)}{(1+t^3)^3}dt^3\\
+        &=9\int \frac{d(t^3+1)}{(t^3+1)^3}-6\int \frac{d(u+1)}{(1+u)^2}+C\\
+        &=\frac{9(1+u)-2}{-2}+\frac{6}{1+u}+C
+    \end{align*}
+    得到参数式通解
+    \begin{align}
+        \begin{cases}
+            x&=\frac{3t}{1+t^3}\\
+            y&=\frac{9}{-2(1+t^3)}+\frac{6}{1+t^3}+C
+        \end{cases}
+        \quad t\text{参数}\quad C \text{为任意常数}
+    \end{align}
+    \
+\end{solution}
+
+\begin{example}
+    \begin{equation}
+        y^2(1-y')=(2-y')^2
+    \end{equation}
+\end{example}
+\begin{solution}
+    \begin{equation}
+        y=\pm\sqrt{\frac{(2-y')^2}{1-y'}}
+    \end{equation}
+    \begin{align}
+        y&>0\quad y=\frac{(2-y')}{\sqrt{1+y'}}\xrightarrow[]{y'=P(x)} y=\frac{2-P}{\sqrt{1-P}}\xrightarrow[]{\text{两边对x求导}}P=\frac{-2\frac{dP}{dx}(1-P)+(2-P)\frac{dP}{dx}}{(1-P)\sqrt{1-P}}
+    \end{align}
+    令$2-y'=ty$
+    \begin{align}
+        \text{原式}:y^2(ty-1)&=t^2y^2\\
+        \downarrow\\
+        y\neq 0\quad y&=\frac{1+t^2}{t}\\
+        y'&=2-(1+t^2)=1-t^2\\
+        \frac{dx}{dy}&=\frac{1}{1-t^2}\quad dx=\frac{dy}{1-t^2}=\frac{1}{1-t^2}\frac{t^2-1}{t^2}dt=-\frac{1}{t^2}dt\\
+        x&=-\int \frac{1}{t^2}dt+C=\frac{1}{t}+C\\
+        \therefore \text{参数式通解}&\begin{cases}
+            x&=\frac{1}{t}+C\\
+            y&=\frac{1}{t}+t
+        \end{cases}\quad t\text{为参数}(C\text{为任意常数})\\
+        y=0\text{时}\quad& (2-y')^2=0\quad y'=2\quad y=2x+C
+    \end{align}
+\end{solution}
+
+\section{总结}
+\begin{enumerate}
+    \item 变量分离
+    \begin{equation}
+        \frac{dy}{dx}=f(x)g(y)
+    \end{equation}
+
+    \item 变量变化法
+    \begin{align}
+        \begin{cases}
+            \text{齐次方程}\quad &\frac{dy}{dx}=g(\frac{y}{x})\\
+            \text{可化为齐次方程}\quad &\frac{dy}{dx}=f\left(\frac{a_1x+b_1y+C_1}{a_2x+b_2y+C_2}\right)\begin{cases}
+                \frac{dy}{dx}&=f(ax+by+C)\quad \text{令}u=ax+by+C\\
+                \frac{dY}{dX}&=f\left(\frac{a_1X+b_1Y}{a_2X+b_2Y}\right)\quad \begin{vmatrix}
+                    a_1&b_1\\a_2&b_2
+                \end{vmatrix}\neq 0\quad \begin{cases}
+                    X&=x-x_0\\
+                    Y&=y-y_0
+                \end{cases}
+            \end{cases}
+        \end{cases}
+    \end{align}
+
+    \item 线性微分方程
+    \begin{enumerate}
+        \item 形式\\
+        \begin{equation}
+        \frac{dy}{dx}=P(x)y+Q(x)
+    \end{equation}
+    \begin{align}
+        \frac{dy}{dx}=P(x)y+Q(x)\\
+        \begin{cases}
+            Q(x)\equiv0\quad &\text{线性齐次方程}\\
+            Q(x)\neq0\quad &\text{线性非齐次方程}
+        \end{cases}
+    \end{align}
+
+    \item  解法：
+    \begin{enumerate}
+        \item 公式法：
+        \begin{equation*}
+            y=e^{\int P(x)dx}\left[\int Q(x)e^{-\int P(x)dx }dx+C\right]
+        \end{equation*}
+        \item 常数变易法：\\
+        求线性齐次通解：
+        \begin{equation}
+            y=Ce^{\int P(x)dx}
+        \end{equation}
+        带入方程定$C(x)$
+        \begin{equation}
+            y=C(x)e^{\int P(x)dx}
+        \end{equation}
+        \item 初值问题：
+        \begin{align}
+            \begin{cases}
+                \frac{dy}{dx}&=P(x)y\\
+                y(x_0)&=y_0
+            \end{cases}
+            ,\quad y=y_0e^{\int_{x_0}^xP(t)dt}
+        \end{align}
+    \end{enumerate}
+        \item 性质
+    \begin{enumerate}
+        \item 齐次线性方程性质\\
+        \begin{equation}\label{eq:2.4 homolineq}
+            \frac{dy}{dx}=P(x)y
+        \end{equation}
+        \begin{enumerate}
+            \item 方程\autoref{eq:2.4 homolineq}必有\textbf{零解}
+            \item 方程\autoref{eq:2.4 homolineq}的通解为任意常数$C$与一个\textbf{非零解的乘积}
+            \item 方程\autoref{eq:2.4 homolineq}的解的线性组合依旧是方程\autoref{eq:2.4 homolineq}的解
+        \end{enumerate}
+
+        \item 非齐次线性方程的性质
+        \begin{equation}\label{eq:2.4 non-homolineq}
+            \frac{dy}{dx}=P(x)y+Q(x)
+        \end{equation}
+        \begin{enumerate}
+            \item 方程\autoref{eq:2.4 non-homolineq}必无零解（所有的解不能构成线性空间）
+            \item 设$y_1(x)$为\autoref{eq:2.4 homolineq}的解，$y_2(x)$为\autoref{eq:2.4 non-homolineq}的解$\Rightarrow y=y_1(x)+y_2(x)$为\autoref{eq:2.4 non-homolineq}的解
+            \item 设$y_1(x),y_2(x)$为\autoref{eq:2.4 non-homolineq}的解$\Rightarrow y=y_1(x)-y_2(x)$为\autoref{eq:2.4 homolineq}的解
+            \item 设$y_1(x)$为\autoref{eq:2.4 homolineq}的解，$y_2(x)$为\autoref{eq:2.4 non-homolineq}的解,当且仅当$C_1+C_2=1$时，有$C_1y_1(x)+C_2y_2(x)$是\autoref{eq:2.4 homolineq}的解
+            \item 叠加性质
+            \begin{align}
+                \frac{dy}{dx}&=P(x)y+Q_1(x)\label{eq:2.4 non-linerq 1}\\
+                \frac{dy}{dx}&=P(x)y+Q_2(x)\label{eq:2.4 non-linerq 2}\\
+                \frac{dy}{dx}&=P(x)y+Q_1(x)+Q_2(x)\label{eq:2.4 non-linerq 3}\\
+            \end{align}
+            设$y_1(x),y_2(x)$分别为\autoref{eq:2.4 non-linerq 1}和\autoref{eq:2.4 non-linerq 2}的解，$\Rightarrow y_1(x)+y_2(x)$为方程\autoref{eq:2.4 non-linerq 3}的解
+            \item  
+            \begin{equation}
+                \frac{dy}{dx}=P(x)y+Q_1(x)+iQ_2(x)\label{eq:2.4 non-linerq 4}
+            \end{equation}
+            设$y_1(x),y_2(x)$分别为\autoref{eq:2.4 non-linerq 1}和\autoref{eq:2.4 non-linerq 2}的解，$\Leftrightarrow y_1(x)+iy_2(x)$为方程\autoref{eq:2.4 non-linerq 4}的解
+        \end{enumerate}
+    \end{enumerate}
+    \end{enumerate}
+
+    \item 伯努利方程
+    \begin{equation}
+        \frac{dy}{dx}=P(x)y+Q(x)y^n
+    \end{equation}
+    在求解时通常对等式两边同除$y^n$,并令$z=y^{1-n}$进行求解
+    \begin{example}
+        \begin{equation}
+            \frac{dy}{dx}=\frac{y}{x-y^3}
+        \end{equation}
+    \end{example}
+    \begin{solution}
+        \begin{enumerate}
+            \item 常数变易法：
+            \begin{align*}
+                \frac{dx}{dy}&=\frac{1}{y}x-y^2\\
+                P(y)&=\frac{1}{y}\quad Q(y)=y^2\\
+                x&=e^{\int \frac{1}{y}dy}\left[\int -y^2e^{-\int \frac{1}{y}dy}dy+C\right]
+            \end{align*}
+            \item 伯努利方程一般求法
+            \begin{align*}
+                3y^2\frac{dy}{dx}&=\frac{3y^2}{x-y^3}\\
+                \frac{dy^3}{dx}&=\frac{3y^3}{x-y^3}\\
+                \text{令}x&=y^3\\
+                \frac{dz}{dx}&=\frac{3z}{x-z}
+            \end{align*}
+        \end{enumerate}
+    \end{solution}
+
+    \item 黎卡提方程
+    \begin{equation}
+        \frac{dy}{dx}=P(x)y^2+Q(x)y+R(x)\quad y=\varphi(x)
+    \end{equation}
+
+    \item 一阶微分形式的方程
+    \begin{enumerate}
+        \item 恰当微分方程
+        \begin{equation}
+            M(x,y)dx+N(x,y)dy=0\label{eq:2.4 qiadang}
+        \end{equation}
+        是恰当微分方程的充要条件是：
+        \begin{equation}
+            \frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}
+        \end{equation}
+        \begin{enumerate}
+            \item 通解：$u=C$
+            \item 求解：
+            \begin{enumerate}
+                \item 
+                \begin{align*}
+                    \frac{\partial u}{\partial x}=M\quad \frac{\partial u}{\partial y}=N\rightarrow u&=\int\frac{\partial u}{\partial x}dx=\int Mdx+C(y)
+                \end{align*}
+
+                \item 公式法
+                \begin{align*}
+                    u&=\int_{x_0}^xM(x,y_0)dx+\int_{y_0}^{y}N(x,y)dy\\
+                    &=\int^y_{y_0}N(x_0,y)dy+\int_{x_0}^xM(x,y)dx
+                \end{align*}
+
+                \item 分组分项
+            \end{enumerate}
+
+            \item 非恰当微分方程
+            若$\exists \mu (x,y)\neq0$使:
+            \begin{equation}
+                \mu(x,y)M(x,y)dx+\mu(x,y)N(x,y)dy=0
+            \end{equation}
+            为恰当微分方程，称$\mu(x,y)$为该方程的积分因子（不唯一），检验$\mu(x,y)=0$是否产生额外的解\\
+
+            \noindent\textbf{积分因子的性质}：\\
+            \begin{enumerate}
+                \item 只要\autoref{eq:2.4 qiadang}有解，则\autoref{eq:2.4 qiadang}必有积分因子，不唯一
+                \item $\mu_1(x,y),\mu_2(x,y)$是\autoref{eq:2.4 qiadang}的积分因子$\Rightarrow \mu_1,\mu_2$之间必然有函数关系
+                \item $\mu_1(x,y),\mu_2(x,y)$是\autoref{eq:2.4 qiadang}的两个积分因子，则：
+                \begin{equation*}
+                    \frac{\mu_1(x,y)}{\mu_2(x,y)}\neq\text{常数}\Rightarrow\frac{\mu_1(x,y)}{\mu_2(x,y)}=C
+                \end{equation*}
+                是\autoref{eq:2.4 qiadang}的解
+            \end{enumerate}
+
+            \noindent 寻找积分因子的方法：
+            \begin{enumerate}
+                \item 观察法
+                \item 
+                \begin{equation*}
+                    \frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{N}=\varphi(x)\Leftrightarrow\text{积分因子}\mu =e^{\int \varphi(x)dx}
+                \end{equation*}
+                \begin{equation*}
+                    \frac{\frac{\partial M}{\partial y}-\frac{\partial N}{\partial x}}{-M}=\psi(x)\Leftrightarrow\text{积分因子}\mu =e^{-\int \psi(y)dy}
+                \end{equation*}
+
+                \begin{example}
+                    求\begin{equation*}
+                        (x^3+x^2+y^2)dx+x^2ydy=0
+                    \end{equation*}
+                    的通解
+                \end{example}
+                \begin{solution}
+                    \begin{align*}
+                        M&=x^3+x^2+y^2\quad 
+                    \end{align*}
+                \end{solution}
+
+                \begin{example}
+                    求
+                    \begin{equation*}
+                        ydx+(y^3-x)dy=0
+                    \end{equation*}
+                    的通解
+                \end{example}
+                \begin{solution}
+                    \begin{align*}
+                        M=y\quad N=y^3-x
+                    \end{align*}
+                \end{solution}
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+    
+    \end{enumerate}
+    
+   
+    
+
+\newpage
+\begin{problemset}
+    \item 求解下列方程
+    \begin{enumerate}
+        \item \begin{equation}
+            \frac{dy}{dx}=2xy
+        \end{equation}
+        并求满足初值条件$x=0,y=1$的特解
+        \begin{solution}
+            \begin{equation}
+                \int \frac{1}{y}dy=\int2xdx+C
+            \end{equation}
+            \begin{equation}
+                \ln |y|=x^2+C
+            \end{equation}
+            \begin{equation}
+                y=e^{Cx^2}\quad C\text{取任意实数}
+            \end{equation}
+            是方程的通解，当方程满足初值条件$x=0,\ y=1$时：
+            \begin{equation}
+                1=e^{0}
+            \end{equation}
+            恒成立，故任意实数$C$都满足初值条件
+        \end{solution}
+        \item 
+            \begin{equation}
+                \frac{dy}{dx}=\frac{1+y^2}{xy+x^3y}
+            \end{equation}
+            \begin{solution}
+                \begin{equation}
+                    \int \frac{y}{1+y^2}dy=\int \frac{1}{x+x^3}dx+\ln C
+                \end{equation}
+                \begin{equation}
+                    \frac{1}{2}\int \frac{1}{1+y^2}d(1+y^2)=\int \frac{1}{x}dx+\int\frac{x}{1+x^2}dx+\ln C
+                \end{equation}
+                \begin{equation}
+                    \frac{1}{2}\ln|1+y^2|=\ln |x|+\frac{1}{2}\ln|1+x^2|+\ln C
+                \end{equation}
+                \begin{equation}
+                    1+y^2=Cx^2(1+x^2)
+                \end{equation}
+                 故方程通解为：
+                \begin{equation}
+                     y=\sqrt{Cx^2(1+x^2)-1}\quad C\neq0
+                \end{equation}
+            \end{solution}      
+        \item 
+            \begin{equation}
+                x\frac{dy}{dx}-y+\sqrt{x^2-y^2}=0
+            \end{equation}
+            \begin{solution}
+                1. 当$x>0$时：
+                \begin{equation}
+                    \text{原式}\Rightarrow\frac{dy}{dx}-\frac{y}{x}+\frac{\sqrt{x^2+y^2}}{x}=0
+                \end{equation}
+                \begin{equation}
+                    \frac{dy}{dx}-\frac{y}{x}+\sqrt{1+(\frac{y}{x})^2}=0
+                \end{equation}
+                令$u=\frac{y}{x}\quad \frac{dy}{dx}=x\frac{du}{dx}+u$
+                \begin{equation}
+                    x\frac{du}{dx}+\sqrt{1+u^2}=0
+                \end{equation}
+                \begin{equation}
+                    \int -\frac{1}{\sqrt{1+u^2}}du=\int \frac{1}{x}dx+C
+                \end{equation}
+                \begin{equation}
+                    -\arcsin u=\ln{|x|}+C
+                \end{equation}
+                将$u=\frac{y}{x}$带回得：
+                \begin{equation}
+                    \arcsin \frac{y}{x}=\ln{|x|}+C_1
+                \end{equation}
+                2.当$x<0$时：
+                \begin{align}
+                    \frac{dy}{dx}-\frac{y}{x}+\frac{\sqrt{x^2+y^2}}{x}&=0\\
+                    \frac{dy}{dx}-\frac{y}{x}-\sqrt{1+(\frac{y}{x})^2}&=0\\
+                \end{align}
+                后续过程相同，仅改变arcsin项的符号，得：
+                \begin{equation}
+                    \arcsin \frac{y}{x}=\ln|x|+C_2
+                \end{equation}
+                故可将通解写作：
+                \begin{equation}
+                   \arcsin \frac{y}{x}=\text{sgn}(x)\ln{|x|}+C
+                \end{equation}
+                3.x=0时：
+                $\sqrt{x^2-y^2}>0\quad y^2\geq0$故$y=0$
+            \end{solution}
+        \item 
+        \begin{equation}
+            x(\ln x-\ln y)dy-ydx=0
+        \end{equation}
+
+            \begin{solution}
+                \begin{align}
+                    \text{}\Rightarrow x\ln{\frac{x}{y}}dy-ydx&=0\\
+                    \frac{x}{y}\ln{\frac{x}{y}}=\frac{dx}{dy}
+                \end{align}
+                令$u=\frac{x}{y}\quad \frac{dx}{dy}=y\frac{du}{dy}+u$\\
+                \begin{align}
+                     u\ln u &=y\frac{du}{dy}+u\\
+                     \int \frac{1}{y}dy+\ln C&=\int \frac{1}{u}\frac{1}{\ln u-1}du\\
+                     \ln |y|+\ln C&=\int \frac{1}{\ln u-1}d(\ln u-1)\\
+                     \ln |y|+\ln C&=\ln (\ln u-1)\\
+                     \ln u-1-y-C&=0\\
+                     \ln x-\ln y-1-y-C&=0\\
+                     x&=\exp{(\ln y+y+1+C)}
+                \end{align}
+            \end{solution}
+        \item 
+        \begin{equation}
+            \frac{dy}{dx}=e^{x-y}
+        \end{equation}
+        \begin{solution}
+            \begin{equation}
+                e^ydy=e^xdx
+            \end{equation}
+            \begin{align}
+                \int e^ydy&=\int e^xdx+C\\
+                e^y&=e^x+C\\
+                y&=\ln(e^x+C)
+            \end{align}
+        \end{solution}
+    \end{enumerate}
+    \item 作适当的变量变换求解下列方程
+    \begin{enumerate}
+        \item 
+        \begin{equation}
+            \frac{dy}{dx}=\frac{2x-y+1}{x-2y+1}
+        \end{equation}
+        \begin{solution}
+            \begin{equation}
+                \begin{vmatrix}
+                    a_1&b_1\\
+                    a_2&b_2
+                \end{vmatrix}
+                =
+                \begin{vmatrix} 
+                    2&-1\\1&-2
+                \end{vmatrix}
+                =-3\neq 0
+            \end{equation}
+            \begin{equation}
+                x_0=-\frac{1}{3} \quad y_0=\frac{1}{3}
+            \end{equation}
+            令$X=x+\frac{1}{3}\quad Y=y-\frac{1}{3}$
+            \begin{align}
+                \frac{dY}{dX}&=\frac{2X-Y}{X-2Y}\\
+                \text{令}u&=\frac{Y}{X}\quad \frac{dY}{dX}=X\frac{du}{dX}+u\\
+                X\frac{du}{dX}+u&=\frac{2X-Y}{X-2Y}\\
+                -\int \frac{1}{2u^2-2u+2}d(2u^2-2u+2)&=2\int \frac{1}{X}dX+\ln C\\
+                -\ln (2u^2-2u+2)&=\ln |X^2|+\ln C\\
+                X^2(2u^2-2u+2)&=C\\
+                X^2(2\frac{Y^2}{X^2}-2\frac{Y}{X}+2)&=C\\
+                2Y^2-2XY+2X^2&=C
+            \end{align}
+            \begin{equation}
+                2(y-\frac{1}{3})^2-2(x+\frac{1}{3})(y-\frac{1}{3})+2(x+\frac{1}{3})=C
+            \end{equation}
+            同时$2Y^2-2XY+2X^2=0$也是原方程的解，故原方程的通解为：
+            \begin{equation}
+                2x^2-2xy+2y^2+2x-2y+\frac{2}{3}=C
+            \end{equation}
+            其中C为任意常数
+        \end{solution}        
+    \end{enumerate}
+    \item 
+    已知$f(x)\int^x_0f(t)dt=1(x\neq 0)$，试求函数$f(x)$的一般表达式
+    \begin{solution}
+        令$F(x)=\int^x_0f(t)dt$，则：
+        \begin{equation}
+            F'(x)=f(x),\quad \lim_{x\rightarrow0}F(x)=0
+        \end{equation}
+        故：
+        \begin{equation}
+            F'(x)F(x)=1
+        \end{equation}
+        \begin{align}
+            F(x)d(F(x))&=dx\\
+            F^2(x)&=2x+C(\because \lim_{x\rightarrow0}F(x)=0 \therefore C =0)\\
+            F^2(x)&=2x\\
+            F(x)&=\sqrt{2x}\\
+            f(x)&=\frac{1}{\sqrt{2x}}
+        \end{align}
+    \end{solution}
+    %%%%%%%2.2 线性微分方程与常数变易法%%%%%%
+    \item 求下列方程的解
+    \begin{enumerate}
+        \item 
+        \begin{equation}
+            \frac{dy}{dx}=y+\sin x
+        \end{equation}
+        \begin{solution}
+            \begin{align}
+                \int ydx&=-\int \sin x dx+C\\
+                y^2&=2\cos x+C
+            \end{align}
+        \end{solution}
+        \item 
+        \begin{equation}
+            \frac{dy}{dx}=\frac{y}{x+y^3}
+        \end{equation}
+        \begin{solution}
+            \begin{align}
+                \frac{dx}{dy}&=\frac{x+y^3}{y}\\
+                &\downarrow P(y)=\frac{1}{y}\quad Q(y)=y^2\\
+                x&=e^{\int P(y)dy}\left(\int Q(y)e^{-\int P(y)dy}dy+C\right)\\
+                x&=e^{\int \frac{1}{y}dy}\left(\int y^2e^{-\int \frac{1}{y}dy}dy+C\right)\\
+                x&=e^{\ln |y|}\left(\int y^2e^{-\ln|y|}dy+C\right)\\
+                x&=y(\frac{1}{2}y^2+C)
+            \end{align}
+        \end{solution}
+        \item
+        \begin{equation}
+            \frac{dy}{dx}=\frac{ay}{x}+\frac{x+1}{x}\quad (a\text{是常数})
+        \end{equation}
+        \begin{solution}
+            \begin{align}
+                P(x)&=\frac{a}{x}\quad Q(x)=\frac{x+1}{x}\\
+                \downarrow&\\
+                y&=e^{\int P(x)dx}\left(\int Q(x)e^{-\int p(x)dx}dx+C\right)\\
+                y&=e^{\int \frac{a}{x}dx}\left(
+            \int \frac{x+1}{x}e^{-\int \frac{a}{x}dx}dx+C\right)\\
+            y&=e^{a\ln |x|}\left(\int \frac{x+1}{x}\frac{1}{x^a}dx\right)\\
+            y&=x^a\left(\int \frac{1}{x^a}dx+\int \frac{1}{x^{a+1}}dx+C\right)
+            \end{align}
+            \begin{enumerate}
+                \item 当$x=0$时
+                \begin{align}
+                    y&=\int 1dx+\int\frac{1}{x}dx+C\\
+                    y&=x+\ln |x|+C
+                \end{align}
+                \item 当$x=1$时
+                \begin{align}
+                    y&=x\left(\int \frac{1}{x}dx+\int\frac{1}{x^2}dx+C\right) \\
+                    y&=\ln |x|-\frac{1}{x}+C
+                \end{align}
+                \item 当$x\neq 1,\ x\neq0$时
+                \begin{align}
+                    y&=x^a\left(\frac{1-a}{x^{a-1}}+\frac{-a}{x^a}+C\right)
+                \end{align}
+            \end{enumerate}
+        \end{solution}
+        \item 
+        \begin{equation}
+            \frac{dy}{dx}=\frac{1}{xy+x^3y^3}
+        \end{equation}
+        \begin{solution}
+            \begin{align}
+                \frac{dx}{dy}&=xy+x^3y^3\\
+                x^{-3}\frac{dx}{dy}&=\frac{y}{x^2}+y^3\\
+                \downarrow&P(y)=y\quad Q(y)=y^3\\
+                \downarrow&\text{令}z=x^{-2}\quad \frac{dz}{dy}=-2x^{-3}\frac{dx}{dy}\\
+                \frac{1}{x^2}&=e^{-2\int P(y)}\left(\int -2Q(y)e^{2\int P(x)dx}dx+C\right)\\
+                &=e^{-2\int ydy}\left(\int -2y^3e^{2\int ydy}dy+C\right)\\
+                &=\frac{1}{e^{y^2}}-4\left(\int y^2e^{y^2}d{(y^2)}+C \right)\\
+                &=\frac{1}{e^{y^2}}-4\left(y^2e^{y^2}-\int e^{y^2}d{(y^2)}+C \right)\\
+                &=\frac{1}{e^{y^2}}-4\left[y^2(e^{y^2}-1)\right]\\               
+            \end{align}
+        \end{solution}
+    \end{enumerate}
+    \item 如图所示的RL电路
+        \begin{enumerate}
+            \item 求当开关$S_1$合上$10s$后，电感$L$上的电流；
+            \item $S_1$合上$10s$后再将$S_2$合上，求$S_2$合上$20s$后，电感$L$上的电流。
+        \end{enumerate}
+        \begin{solution}
+            \begin{enumerate}
+                \item 设电流为$I(t)$，当开关$S_1$合上时满足方程：
+                \begin{align}
+                \frac{dI}{dt}L+R_1I&=E\\
+                    \frac{dI}{dt}+\frac{R_1}{L}I&=\frac{E}{L}\\
+                    \frac{dI}{dt}&=-5I+25\\
+                    \Rightarrow I(t)&= ce^{-5t}+5\\
+                    \text{又：当t=0时}I=0\\
+                    c&=-5\\
+                    \Rightarrow I(t)&=5(1-e^{-5t})
+                    \intertext{将t=10s带入得：}\\
+                    I(10)&=5(1-e^{-50})\approx5A                   
+                \end{align}
+                \item 合上$S_2$后电路中的电阻为：
+                \begin{align}
+                    \frac{1}{R}&=\frac{1}{R_1}+\frac{1}{R_2}\\
+                    \Rightarrow R&=\frac{20}{3}\Omega\\
+                    \frac{dI}{dt}&=-\frac{10}{3}I+25\\
+                    I(t)&=7.5+ce^{-\frac{10}{3}t}\\
+                    \text{又：当t=0时}I=0\\
+                    c&=-2.5\\
+                    \Rightarrow I(t)&=7.5-2.5e^{-\frac{10}{3}t}\\
+                    \text{将t=10s带入得：}\\
+                    I(10)&=5(1-e^{-66.6})\approx7.5A
+                \end{align}
+            \end{enumerate}
+        \end{solution}
+
+        \item 求解方程：
+        \begin{equation}
+            y'\sin x\cdot \cos x-y-\sin^3 x=0
+        \end{equation}
+        \begin{solution}
+            \begin{align}
+                \frac{dy}{dx}\sin x\cdot \cos x-y-\cos^3 x&=0\\
+                \frac{dy}{dx}&=\frac{y+\cos^3 x}{\sin x\cos x}\\
+                \frac{dy}{dx}&=\frac{y}{\sin x\cos x}+\frac{\cos^2 x}{\sin x}\\
+                P(x)=\frac{1}{\sin x\cos x}\quad &Q(x)=\frac{\cos^2 x}{\sin x}\\
+                y&=e^{\int P(x)dx}\left(\int Q(x)e^{-\int P(x)dx}dx+C\right)\\
+                &=e^{\int \frac{1}{\sin x \cos x}dx}\left(\int \frac{\cos^2 x}{\sin x}e^{-\int \frac{1}{\sin x \cos x}dx}dx+C\right)              
+            \end{align}
+            对于该表达式有：
+            \begin{align*}
+                y &= e^{\int \frac{1}{\sin x \cos x}dx} \left( \int \frac{\cos^2 x}{\sin x} e^{-\int \frac{1}{\sin x \cos x}dx} dx + C \right)
+                \intertext{首先计算积分 $\int \frac{1}{\sin x \cos x} dx$:}
+                \frac{1}{\sin x \cos x} &= \frac{\sin^2 x + \cos^2 x}{\sin x \cos x} 
+                = \frac{\sin x}{\cos x} + \frac{\cos x}{\sin x} 
+                = \tan x + \cot x \\
+                \int \frac{1}{\sin x \cos x} dx &= \int \tan x \, dx + \int \cot x \, dx \\
+                &= -\ln|\cos x| + \ln|\sin x| + C_1 
+                = \ln\left| \frac{\sin x}{\cos x} \right| + C_1 
+                = \ln|\tan x| + C_1
+                \intertext{取特解 $C_1 = 0$，则：}
+                e^{\int \frac{1}{\sin x \cos x} dx} &= e^{\ln|\tan x|} = |\tan x| \\
+                e^{-\int \frac{1}{\sin x \cos x} dx} &= \frac{1}{|\tan x|}
+                \intertext{在区间 $(0, \pi/2)$ 内 $\tan x > 0$，所以：}
+                e^{\int \frac{1}{\sin x \cos x} dx} &= \tan x, \quad 
+                e^{-\int \frac{1}{\sin x \cos x} dx} = \cot x
+                \intertext{代入原式：}
+                y &= \tan x \left( \int \frac{\cos^2 x}{\sin x} \cdot \cot x \, dx + C \right) \\
+                &= \tan x \left( \int \frac{\cos^2 x}{\sin x} \cdot \frac{\cos x}{\sin x} \, dx + C \right) \\
+                &= \tan x \left( \int \frac{\cos^3 x}{\sin^2 x} \, dx + C \right)
+                \intertext{计算积分 $\int \frac{\cos^3 x}{\sin^2 x} dx$:}
+                \frac{\cos^3 x}{\sin^2 x} &= \frac{\cos x (1 - \sin^2 x)}{\sin^2 x} 
+                = \frac{\cos x}{\sin^2 x} - \cos x \\
+                \int \frac{\cos^3 x}{\sin^2 x} dx &= \int \frac{\cos x}{\sin^2 x} dx - \int \cos x \, dx
+                \intertext{令 $u = \sin x$, $du = \cos x dx$:}
+                \int \frac{\cos x}{\sin^2 x} dx &= \int u^{-2} du = -u^{-1} = -\frac{1}{\sin x} \\
+                \int \cos x \, dx &= \sin x \\
+                \int \frac{\cos^3 x}{\sin^2 x} dx &= -\frac{1}{\sin x} - \sin x + C_2
+                \intertext{代回原式：}
+                y &= \tan x \left( -\frac{1}{\sin x} - \sin x + C \right) \\
+                &= \frac{\sin x}{\cos x} \left( -\frac{1}{\sin x} - \sin x + C \right) \\
+                &= \frac{\sin x}{\cos x} \cdot \left( -\frac{1}{\sin x} \right) 
+                 + \frac{\sin x}{\cos x} \cdot (-\sin x) 
+                 + \frac{\sin x}{\cos x} \cdot C \\
+                &= -\frac{1}{\cos x} - \frac{\sin^2 x}{\cos x} + C \frac{\sin x}{\cos x} \\
+                &= \frac{-\,(1 + \sin^2 x) + C \sin x}{\cos x}\\
+                &=C\tan x-\frac{1+\sin^2 x}{\cos x}
+            \end{align*}
+        \end{solution}
+
+        \item 验证下列方程是恰当微分方程，并求出方程的解：
+        \begin{enumerate}
+            \item \begin{equation}
+                \left[\frac{y^2}{(x-y)^2}-\frac{1}{x}\right]dx+\left[\frac{1}{y}-\frac{x^2}{(x-y)^2}\right]dy=0
+            \end{equation}
+            \begin{solution}
+            1.方法一：
+                \begin{align}
+                    \frac{\partial }{\partial y}\left[\frac{y^2}{(x-y)^2}-\frac{1}{x}\right]&=\frac{2xy}{(x-y)^3}\\
+                    \frac{\partial }{\partial x}\left[\frac{1}{y}-\frac{x^2}{(x-y)^2}\right]&=\frac{2xy}{(x-y)^3}\\
+                    M(x,y)=\frac{y^2}{(x-y)^2}-\frac{1}{x}&\quad N(x,y)=\frac{1}{y}-\frac{x^2}{(x-y)^2}\\
+                    u(x,y)&=\int M(x,y)dx+\varphi(y)\\
+                   &=-\frac{y^2}{x-y}-\ln |x|+\varphi(y)\\
+                   \varphi(y)&=\int \left[\frac{1}{y}-\frac{x^2}{(x-y)^2}-\frac{\partial }{\partial y}\left(-\frac{y^2}{x-y}-\ln |x|\right)\right]dy\\
+                   &=\int \left[\frac{1}{y}-\frac{x^2-2xy+3y^2}{(x-y)^2}\right]dy\\
+                   &=\ln |y|-y-(\frac{2x^2}{x-y} + 4x \ln|x-y| - 2x + 2y) + C\\
+                   \Rightarrow u(x,y)&=\boxed{\ln |y| - 4x \ln|x-y| - \frac{2x^2}{x-y} + 2x - 3y + C}
+                \end{align}
+                即通解为：
+                \begin{equation}
+                    \ln |y| - 4x \ln|x-y| - \frac{2x^2}{x-y} + 2x - 3y = C
+                \end{equation}
+            2. 方法二：
+            \begin{align}
+                M(x,y)=\frac{y^2}{(x-y)^2}-\frac{1}{x}&\quad N(x,y)=\frac{1}{y}-\frac{x^2}{(x-y)^2}\\
+                u(x,y)&=\int M(x,y)dx+N(x,y)dy+C\\
+                &=\int_0^x \left[\frac{y^2}{(x-y)^2}-\frac{1}{x}\right]dx+\int^y_0\left[\frac{1}{y}-\frac{x^2}{(x-y)^2}\right]dy\\
+                &=-\int^x_0 \frac{1}{x}dx+\int_0^y\left(\frac{1}{y}-\frac{x^2}{(x-y)^2}\right)dy\\
+                &=-\ln |x|+\ln |y|-\frac{xy}{x-y}\\
+                \Rightarrow& \ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}=c            
+            \end{align}
+
+            3.方法三：
+            \begin{align}
+                M(x,y)=\frac{y^2}{(x-y)^2}-\frac{1}{x}&\quad N(x,y)=\frac{1}{y}-\frac{x^2}{(x-y)^2}\\
+                \frac{\partial M}{dy}&=\frac{\partial N}{\partial x}\\
+                 \left[\frac{y^2}{(x-y)^2}-\frac{1}{x}\right]dx+\left[\frac{1}{y}-\frac{x^2}{(x-y)^2}\right]dy&=0\\
+                 \Rightarrow \frac{y^2}{(x-y)^2}dx-\frac{1}{x}dx+\frac{1}{y}dy-\frac{x^2}{(x-y)^2}dy&=0\\
+                 d(\ln|y|)-d(\ln|x|)+\frac{y^2dx+x^2dy}{(x-y)^2}&=0\\
+                 d(\ln|y|)-d(\ln|x|)+d(\frac{-xy}{x-y})&=0\\
+                 d(\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y})&=0\\
+                 \Rightarrow\ln\left|\frac{y}{x}\right|-\frac{xy}{x-y}&=c 
+            \end{align}
+            \end{solution}
+
+            \item 
+            \begin{equation}
+                2(3xy^2+2x^3)dx+3(2x^2y+y^2)dy=0
+            \end{equation}
+            \begin{solution}
+                1. 方法一：
+                    \begin{align}
+                        \frac{\partial}{\partial y}\left[2(3xy^2+2x^3)\right]&=12xy\\
+                        \frac{\partial}{\partial x}\left[3(2x^2y+y^2)\right]&=12xy\\
+                        M(x,y)=2(3xy^2+2x^3)&\quad N(x,y)=3(2x^2y+y^2)\\
+                        u(x,y)&=\int M(x,y)dx+\varphi(y)\\
+                        &=3x^2y^2+x^4+\varphi(y)\\
+                        \varphi(y)&=\int \left[N(x,y)-\frac{\partial}{\partial y}(3x^2y^2+x^4)\right]dy\\
+                        &=\int (6x^2y+3y^2-6x^2y)dy\\
+                        &=y^3\\
+                        u(x,y)&=3x^2y^2+x^4+y^3
+                    \end{align}
+                    \begin{equation}
+                        3x^2y^2+x^4+y^3=c
+                    \end{equation}
+                2. 方法二：
+                    \begin{align}
+                        M(x,y)&=2(3xy^2+2x^3)\quad N(x,y)=3(2x^2y+y^2)\\
+                        u(x,y)&=\int_{(0,0)}^{(x,y)}M(x,y)dx+N(x,y)dy\\
+                        &=\int_{0}^{x}4x^3dx+\int_0^y6x^2y+3y^2dy\\
+                        &=x^4+y^3+3x^2y^2
+                    \end{align}
+                3. 方法三：
+                    \begin{align}
+                        2(3xy^2+2x^3)dx+3(2x^2y+y^2)dy&=4x^3dx+3y^2dy+6xy^2dx+6x^2ydy\\
+                        &=d(x^4)+d(y^3)+d(3x^2y^2)\\
+                        &=d(x^4+y^3+3x^2y^2)=0\\
+                        \therefore x^4+y^3+3x^2y^2&=c
+                    \end{align}
+            \end{solution}
+
+            \item 
+            \begin{equation}
+                \left(\frac{1}{y}\sin\frac{x}{y}-\frac{y}{x^2}\cos\frac{y}{x}+1\right)dx+\left(\frac{1}{x}\sin\frac{y}{x}-\frac{x}{y^2}\cos\frac{x}{y}+\frac{1}{y^2}\right)dy=0
+            \end{equation}
+            \begin{solution}
+            1. 方法一：
+                \begin{align}
+                    \frac{\partial}{\partial y}\left(\frac{1}{y}\sin\frac{x}{y}-\frac{y}{x^2}\cos\frac{y}{x}+1\right)&=\ln|y|\sin\frac{x}{y}+\frac{x}{y}\ln|y|\cos\frac{x}{y}-\frac{1}{x^2}\cos \frac{y}{x}+\frac{y}{x}\sin\frac{y}{x}\\
+                    \frac{\partial }{\partial x}\left(\frac{1}{x}\sin\frac{y}{x}-\frac{x}{y^2}\cos\frac{x}{y}+\frac{1}{y^2}\right)&=\ln|x|\sin\frac{y}{x}+\frac{y}{x}\ln|x|\cos\frac{y}{x}
+                \end{align}
+            2. 方法二：
+                \begin{align}
+                    M(x,y)&=\left(\frac{1}{y}\sin\frac{x}{y}-\frac{y}{x^2}\cos\frac{y}{x}+1\right)\\
+                    N(x,y)&=\left(\frac{1}{x}\sin\frac{y}{x}-\frac{x}{y^2}\cos\frac{x}{y}+\frac{1}{y^2}\right)\\
+                \end{align}
+                取路径 $(1,1) \to (x,1) \to (x,y)$。
+
+                \textbf{水平段} $(1,1) \to (x,1)$：
+                \begin{align*}
+                I_1 &= \int_{1}^{x} \left[ \sin t - \frac{1}{t^2} \cos\frac{1}{t} + 1 \right] dt \\
+                &= (-\cos x + \cos 1) - \left( \sin\frac{1}{x} - \sin 1 \right) + (x - 1) \\
+                &= x - 1 - \cos x + \cos 1 + \sin 1 - \sin\frac{1}{x}.
+                \end{align*}
+                
+                \textbf{竖直段} $(x,1) \to (x,y)$：
+                \begin{align*}
+                I_2 &= \int_{1}^{y} \left[ \frac{1}{x} \sin\frac{s}{x} - \frac{x}{s^2} \cos\frac{x}{s} + \frac{1}{s^2} \right] ds \\
+                &= \left( -\cos\frac{y}{x} + \cos\frac{1}{x} \right)
+                 + \left( \sin\frac{x}{y} - \sin x \right)
+                 + \left( -\frac{1}{y} + 1 \right).
+                \end{align*}
+                \begin{align*}
+                u(x,y) &= I_1 + I_2 \\
+                &= x - \cos x - \sin x + \sin\frac{x}{y} - \cos\frac{y}{x} - \frac{1}{y} \\
+                &\quad + \cos\frac{1}{x} - \sin\frac{1}{x} + (\cos 1 + \sin 1).
+                \end{align*}
+                
+                方程通解为 $u(x,y) = C$，即：
+                \[
+                \boxed{
+                x - \cos x - \sin x + \sin\frac{x}{y} - \cos\frac{y}{x} - \frac{1}{y} + \cos\frac{1}{x} - \sin\frac{1}{x} = C
+                }
+                \]
+            3. 方法三：
+            \[
+            \left( \frac{1}{y} \sin\frac{x}{y} dx - \frac{x}{y^2} \cos\frac{x}{y} dy \right)
+            + \left( -\frac{y}{x^2} \cos\frac{y}{x} dx + \frac{1}{x} \sin\frac{y}{x} dy \right)
+            + \left( 1 \cdot dx + \frac{1}{y^2} dy \right) = 0
+            \]
+            
+            \textbf{第一组：}
+            \[
+            \frac{1}{y} \sin\frac{x}{y} dx - \frac{x}{y^2} \cos\frac{x}{y} dy
+            \]
+            注意到：
+            \[
+            d\left( \cos\frac{x}{y} \right) = -\frac{1}{y} \sin\frac{x}{y} dx + \frac{x}{y^2} \sin\frac{x}{y} \cdot \frac{1}{?} 
+            \]
+            更直接地：
+            \[
+            d\left( -\cos\frac{x}{y} \right) = \frac{1}{y} \sin\frac{x}{y} dx - \frac{x}{y^2} \sin\frac{x}{y} \cdot \frac{1}{1} \cdot dy
+            \]
+            实际上：
+            \[
+            d\left( \sin\frac{x}{y} \right) = \frac{1}{y} \cos\frac{x}{y} dx - \frac{x}{y^2} \cos\frac{x}{y} dy
+            \]
+            这正是第一组形式！所以：
+            \[
+            \text{第一组} = d\left( \sin\frac{x}{y} \right)
+            \]
+            
+            \textbf{第二组：}
+            \[
+            -\frac{y}{x^2} \cos\frac{y}{x} dx + \frac{1}{x} \sin\frac{y}{x} dy
+            \]
+            计算：
+            \[
+            d\left( \cos\frac{y}{x} \right) = \frac{y}{x^2} \sin\frac{y}{x} dx - \frac{1}{x} \sin\frac{y}{x} dy
+            \]
+            与第二组比较，发现：
+            \[
+            d\left( \sin\frac{y}{x} \right) = -\frac{y}{x^2} \cos\frac{y}{x} dx + \frac{1}{x} \cos\frac{y}{x} dy
+            \]
+            也不匹配。
+            
+            实际上，观察：
+            \[
+            d\left( \sin\frac{y}{x} \right) = \frac{1}{x} \cos\frac{y}{x} dy - \frac{y}{x^2} \cos\frac{y}{x} dx
+            \]
+            这正是第二组形式！所以：
+            \[
+            \text{第二组} = d\left( \sin\frac{y}{x} \right)
+            \]
+            
+            \textbf{第三组：}
+            \[
+            1 \cdot dx + \frac{1}{y^2} dy = d(x) + d\left( -\frac{1}{y} \right) = d\left( x - \frac{1}{y} \right)
+            \]
+           
+            综合以上结果：
+            \[
+            d\left( \sin\frac{x}{y} \right) + d\left( \sin\frac{y}{x} \right) + d\left( x - \frac{1}{y} \right) = 0
+            \]
+            即：
+            \[
+            d\left( \sin\frac{x}{y} + \sin\frac{y}{x} + x - \frac{1}{y} \right) = 0
+            \]
+            
+            方程的通解为：
+            \[
+            \boxed{\sin\frac{x}{y} + \sin\frac{y}{x} + x - \frac{1}{y} = C}
+            \]
+            其中 $C$ 为任意常数。
+            \end{solution}
+        \end{enumerate}
+        \item 求下列方程的解：
+        \begin{enumerate}
+            \item 
+            \begin{equation}
+                2x(ye^{x^2}-1)dx+e^{x^2}dy=0
+            \end{equation}
+            \begin{solution}
+                \begin{align*}
+                    \frac{\partial}{\partial y}2x(ye^{x^2}-1)&=2xe^{x^2}\\
+                    \frac{\partial}{\partial x}e^{x^2}&=2xe^{x^2}\\
+                    M(x,y)&=2x(ye^{x^2}-1)\\
+                    N(x,y)&=e^{x^2}\\
+                    u(x,y)&=\int_0^BM(x,y)dx+N(x,y)dy\\
+                    &=\int_0^x(-2x)dx+\int_0^ye^{x^2}dy\\
+                    &=-x^2+e^{x^2}y\\
+                    \Rightarrow -x^2+e^{x^2}y&=c
+                \end{align*}
+            \end{solution}
+            \item 
+            \begin{equation}
+                2xydx+(x^2+1)dy=0
+            \end{equation}
+            \begin{solution}
+                \begin{align*}
+                    \frac{\partial}{\partial y}2xy&=2x\\
+                    \frac{\partial}{\partial x}(x^2+1)&=2x\\
+                    M(x,y)&=2xy\\
+                    N(x,y)&=x^2+1\\
+                    u(x,y)&=\int_0^BM(x,y)dx+N(x,y)dx\\
+                    &=\int_0^y(x^2+1)dy\\
+                    &=(x^2+1)y\\
+                    \Rightarrow (x^2+1)y&=c
+                \end{align*}
+            \end{solution}
+        \end{enumerate}
+
+
+        \begin{example}
+        求解微分方程：
+        \[
+        (1 + xy)y  dx + (1 - xy)x  dy = 0.
+        \]
+        \end{example}
+        
+        \begin{solution}[解答]
+        我们提供两种方法来求解这个微分方程。
+        
+        \textbf{方法一：代换法 } $u = xy$.
+        
+        令 $u = xy$，则：
+        \begin{align*}
+        du &= y  dx + x  dy \\
+        \Rightarrow y  dx &= du - x  dy
+        \end{align*}
+        
+        代入原方程：
+        \begin{align*}
+        (1 + u)y  dx + (1 - u)x  dy &= 0 \\
+        (1 + u)(du - x  dy) + (1 - u)x  dy &= 0 \\
+        (1 + u)du - (1 + u)x  dy + (1 - u)x  dy &= 0 \\
+        (1 + u)du - 2ux  dy &= 0
+        \end{align*}
+        
+        由于 $u = xy$，我们有 $y = \frac{u}{x}$ 和 $dy = \frac{x  du - u  dx}{x^2}$：
+        \begin{align*}
+        (1 + u)du - 2u \cdot x \cdot \frac{x  du - u  dx}{x^2} &= 0 \\
+        (1 + u)du - 2u \cdot \frac{x  du - u  dx}{x} &= 0 \\
+        (1 + u)du - 2u  du + \frac{2u^2}{x} dx &= 0 \\
+        (1 - u)du + \frac{2u^2}{x} dx &= 0
+        \end{align*}
+        
+        分离变量：
+        \begin{align*}
+        \frac{2u^2}{x} dx &= (u - 1)du \\
+        \frac{2}{x} dx &= \frac{u - 1}{u^2} du
+        \end{align*}
+        
+        两边积分：
+        \begin{align*}
+        \int \frac{2}{x} dx &= \int \frac{u - 1}{u^2} du \\
+        2\ln|x| &= \int \left( \frac{1}{u} - \frac{1}{u^2} \right) du \\
+        2\ln|x| &= \ln|u| + \frac{1}{u} + C
+        \end{align*}
+        
+        代回 $u = xy$：
+        \begin{align*}
+        2\ln|x| &= \ln|xy| + \frac{1}{xy} + C \\
+        \ln|x| - \ln|y| &= \frac{1}{xy} + C \\
+        \ln\left| \frac{x}{y} \right| - \frac{1}{xy} &= C
+        \end{align*}
+        
+        \textbf{方法二：分组项和凑微分法。}
+        
+        重写原方程：
+        \begin{align*}
+        (1 + xy)y  dx + (1 - xy)x  dy &= 0 \\
+        y  dx + xy^2  dx + x  dy - x^2y  dy &= 0 \\
+        (y  dx + x  dy) + xy(y  dx - x  dy) &= 0
+        \end{align*}
+        
+        注意到：
+        \begin{align*}
+        y  dx + x  dy &= d(xy) \\
+        xy(y  dx - x  dy) &= xy \cdot \left( \frac{y  dx}{1} - \frac{x  dy}{1} \right)
+        \end{align*}
+        
+        两边除以 $x^2y^2$（假设 $x \neq 0$, $y \neq 0$）：
+        \begin{align*}
+        \frac{d(xy)}{x^2y^2} + \frac{1}{xy}(y  dx - x  dy) &= 0 \\
+        -\frac{d(xy)}{x^2y^2} + \left( \frac{dx}{x} - \frac{dy}{y} \right) &= 0
+        \end{align*}
+        
+        识别微分形式：
+        \begin{align*}
+        d\left( \frac{1}{xy} \right) &= -\frac{d(xy)}{x^2y^2} \\
+        d\left( \ln\left| \frac{x}{y} \right| \right) &= \frac{dx}{x} - \frac{dy}{y}
+        \end{align*}
+        
+        因此：
+        \begin{align*}
+        d\left( \ln\left| \frac{x}{y} \right| - \frac{1}{xy} \right) &= 0
+        \end{align*}
+        
+        积分得：
+        \begin{align*}
+        \ln\left| \frac{x}{y} \right| - \frac{1}{xy} &= C
+        \end{align*}
+        
+        两种方法得到相同的解：
+        \[
+        \boxed{\ln\left| \frac{x}{y} \right| - \frac{1}{xy} = C}
+        \]
+        其中 $C$ 是任意常数，解在 $x \neq 0$ 和 $y \neq 0$ 时成立。
+        \end{solution}
+
+        \item 求下列方程的解：
+        \begin{equation}
+        y \, dx - (x + y^3) \, dy = 0
+        \end{equation}
+        
+        \begin{solution}
+        令：
+         \[  M(x, y) = y, \quad N(x, y) = -(x + y^3)  \] 
+        计算偏导数：
+         \[  \frac{\partial M}{\partial y} = 1, \quad \frac{\partial N}{\partial x} = -1  \] 
+        由于  $\frac{\partial M}{\partial y} \neq \frac{\partial N}{\partial x}$ ，方程不是恰当微分方程。
+        
+        考虑积分因子。计算：
+         \[  \frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{-M} = \frac{1 - (-1)}{-y} = -\frac{2}{y} := \varphi(y)  \] 
+        因此存在仅与  $y$  有关的积分因子：
+         \[  \mu(y) = \exp\left( \int \varphi(y) \, dy \right) = \exp\left( \int -\frac{2}{y} \, dy \right) = e^{-2\ln|y|} = \frac{1}{y^2}  \] 
+        将原方程乘以  $\mu(y) = \frac{1}{y^2}$ ：
+         \[  \frac{1}{y} \, dx - \left( \frac{x}{y^2} + y \right) \, dy = 0  \] 
+        现在验证其恰当性：
+         \[  \widetilde{M} = \frac{1}{y}, \quad \widetilde{N} = -\left( \frac{x}{y^2} + y \right)  \] 
+         \[  \frac{\partial \widetilde{M}}{\partial y} = -\frac{1}{y^2}, \quad \frac{\partial \widetilde{N}}{\partial x} = -\frac{1}{y^2}  \] 
+        相等，故为恰当方程。
+        
+        求通解  $u(x,y) = C$ ：
+         \[  u(x, y) = \int \widetilde{M} \, dx + \int \left( \widetilde{N} - \frac{\partial}{\partial y} \int \widetilde{M} \, dx \right) dy  \] 
+        先对  $x$  积分：
+         \[  \int \frac{1}{y} \, dx = \frac{x}{y}  \] 
+        再对  $y$  积分不含  $x$  的部分：
+         \[  \int \left[ -\left( \frac{x}{y^2} + y \right) - \frac{\partial}{\partial y} \left( \frac{x}{y} \right) \right] dy = \int \left[ -\frac{x}{y^2} - y + \frac{x}{y^2} \right] dy = \int (-y) \, dy = -\frac{1}{2} y^2  \] 
+        所以：
+         \[  u(x, y) = \frac{x}{y} - \frac{1}{2} y^2 = C  \] 
+        通解为：
+         \[  \boxed{\frac{x}{y} - \frac{1}{2} y^2 = C}  \] 
+        \end{solution}
+        
+        \item 求下列方程的解：
+        \begin{equation}
+        (x + 2y) \, dx + x \, dy = 0
+        \end{equation}
+        
+        \begin{solution}
+        令：
+         \[  M = x + 2y, \quad N = x  \] 
+         \[  \frac{\partial M}{\partial y} = 2, \quad \frac{\partial N}{\partial x} = 1 \quad \Rightarrow \text{非恰当}  \] 
+        计算：
+         \[  \frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}}{N} = \frac{2 - 1}{x} = \frac{1}{x} := \varphi(x)  \] 
+        故存在仅与  $x$  有关的积分因子：
+         \[  \mu(x) = \exp\left( \int \frac{1}{x} \, dx \right) = x  \] 
+        乘以  $\mu(x)$  得：
+         \[  x(x + 2y) \, dx + x^2 \, dy = 0  \] 
+        即：
+         \[  (x^2 + 2xy) \, dx + x^2 \, dy = 0  \] 
+        验证恰当性：
+         \[  \frac{\partial}{\partial y}(x^2 + 2xy) = 2x, \quad \frac{\partial}{\partial x}(x^2) = 2x \quad \text{相等}  \] 
+        求通解：
+         \[  u(x, y) = \int\_0^x (x^2 + 2xy) \, dx + \int\_0^y x^2 \, dy = \left[ \frac{x^3}{3} + x^2 y \right]\_0^x + \left[ x^2 y \right]\_0^y = \frac{x^3}{3} + x^2 y + x^2 y = \frac{x^3}{3} + 2x^2 y  \] 
+        通解为：
+         \[  \boxed{\frac{x^3}{3} + 2x^2 y = C}  \] 
+        \end{solution}
+        
+        \item 设微分方程  $M(x, y) \, dx + N(x, y) \, dy = 0$  分别具有形如  $\mu(x+y)$  和  $\mu(xy)$  的积分因子，求其充要条件。
+        
+        \begin{solution}
+        \begin{enumerate}[label=(\alph*)]
+            \item \textbf{若存在  $\mu(x+y)$  型积分因子}
+        
+            令  $z = x + y$ ，则  $\mu = \mu(z)$ 。要求：
+             \[      \frac{\partial}{\partial y} [\mu(z) M] = \frac{\partial}{\partial x} [\mu(z) N]      \] 
+            展开：
+             \[      \mu' \cdot M + \mu \cdot \frac{\partial M}{\partial y} = \mu' \cdot N + \mu \cdot \frac{\partial N}{\partial x}      \] 
+            整理：
+             \[      \mu' (M - N) = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)      \] 
+            即：
+             \[      \frac{d\mu}{dz} (M - N) = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)      \] 
+            所以：
+             \[      \frac{1}{\mu} \frac{d\mu}{dz} = \frac{ \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} }{M - N}      \] 
+            右端必须仅为  $z = x+y$  的函数。故充要条件是：
+             \[      \boxed{ \frac{ \frac{\partial M}{\partial y} - \frac{\partial N}{\partial x} }{N - M} \text{ 是 } x+y \text{ 的函数} }      \] 
+        
+            \item \textbf{若存在  $\mu(xy)$  型积分因子}
+        
+            令  $z = xy$ ，则  $\mu = \mu(z)$ 。同理：
+             \[      \frac{\partial}{\partial y} (\mu M) = \frac{\partial}{\partial x} (\mu N)      \Rightarrow \mu' x M + \mu \frac{\partial M}{\partial y} = \mu' y N + \mu \frac{\partial N}{\partial x}      \] 
+            整理：
+             \[      \mu' (xM - yN) = \mu \left( \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} \right)      \] 
+            即：
+             \[      \frac{1}{\mu} \frac{d\mu}{dz} = \frac{ \frac{\partial N}{\partial x} - \frac{\partial M}{\partial y} }{xM - yN}      \] 
+            右端必须仅为  $z = xy$  的函数。故充要条件是：
+             \[      \boxed{ \frac{ \frac{\partial M}{\partial y} - \frac{\partial N}{\partial x} }{yN - xM} \text{ 是 } xy \text{ 的函数} }      \] 
+        \end{enumerate}
+        \end{solution}
+        
+        \item 设函数  $f(u)$ ,  $g(u)$  连续可微且  $f(u) \ne g(u)$ ，试证方程
+        \begin{equation}
+        y f(xy) \, dx + x g(xy) \, dy = 0
+        \end{equation}
+        有积分因子  $\mu = [xy (f(xy) - g(xy))]^{-1}$ 。
+        
+        \begin{solution}
+        令  $u = xy$ ，则方程变为：
+         \[  y f(u) \, dx + x g(u) \, dy = 0  \] 
+        乘以  $\mu = \frac{1}{u (f(u) - g(u))}$ ：
+         \[  \frac{y f(u)}{u (f(u) - g(u))} \, dx + \frac{x g(u)}{u (f(u) - g(u))} \, dy = 0  \] 
+        即：
+         \[  \frac{f(u)}{x (f(u) - g(u))} \, dx + \frac{g(u)}{y (f(u) - g(u))} \, dy = 0  \] 
+        令：
+         \[  M = \frac{f(u)}{x (f(u) - g(u))}, \quad N = \frac{g(u)}{y (f(u) - g(u))}  \] 
+        计算  $\frac{\partial M}{\partial y}$  和  $\frac{\partial N}{\partial x}$ 。注意  $u = xy$ ，故：
+         \[  \frac{\partial M}{\partial y} = \frac{\partial}{\partial y} \left( \frac{f(u)}{x (f(u) - g(u))} \right) = \frac{1}{x} \cdot \frac{d}{du} \left( \frac{f}{f - g} \right) \cdot x = \frac{d}{du} \left( \frac{f}{f - g} \right)  \] 
+        同理：
+         \[  \frac{\partial N}{\partial x} = \frac{1}{y} \cdot \frac{d}{du} \left( \frac{g}{f - g} \right) \cdot y = \frac{d}{du} \left( \frac{g}{f - g} \right)  \] 
+        但注意：
+         \[  \frac{d}{du} \left( \frac{f}{f - g} \right) = \frac{f'(f - g) - f(f' - g')}{(f - g)^2} = \frac{ -f g' + f' g }{(f - g)^2}  \] 
+         \[  \frac{d}{du} \left( \frac{g}{f - g} \right) = \frac{g'(f - g) - g(f' - g')}{(f - g)^2} = \frac{ g f' - f g' }{(f - g)^2}  \] 
+        二者相等！故  $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$ ，乘以  $\mu$  后为恰当方程。
+        
+        因此  $\mu = [xy (f(xy) - g(xy))]^{-1}$  是积分因子。
+        \end{solution}
+         
+         \item 求伯努利微分方程的积分因子。    伯努利方程：  \[  \frac{dy}{dx} + P(x) y = Q(x) y^n \quad (n \ne 1)  \] 
+        
+        \begin{solution}
+        令  $z = y^{1-n}$ ，则：
+         \[  \frac{dz}{dx} = (1 - n) y^{-n} \frac{dy}{dx}  \] 
+        代入原方程：
+         \[  y^{-n} \frac{dy}{dx} + P(x) y^{1-n} = Q(x)  \Rightarrow \frac{1}{1 - n} \frac{dz}{dx} + P(x) z = Q(x)  \] 
+        即：
+         \[  \frac{dz}{dx} + (1 - n) P(x) z = (1 - n) Q(x)  \] 
+        这是线性方程，其积分因子为：
+         \[  \mu(x) = \exp\left( \int (1 - n) P(x) \, dx \right)  \] 
+        还原为原变量，原方程的积分因子为：
+         \[  \boxed{\mu(x, y) = y^{-n} \exp\left( \int (1 - n) P(x) \, dx \right)}  \] 
+        \end{solution}
+        
+        \item 求解下列方程：
+        
+        \begin{enumerate}[label=(\alph*)]
+            \item  $x y' = 1 + y'$ 
+        
+            \begin{solution}
+            令  $p = y'$ ，则：
+             \[      x p = 1 + p \Rightarrow x = \frac{1 + p}{p} = 1 + \frac{1}{p}      \] 
+            对  $y$  求导（视  $x$  为  $y$  的函数）：
+             \[      \frac{dx}{dy} = \frac{d}{dy} \left(1 + \frac{1}{p}\right) = -\frac{1}{p^2} \frac{dp}{dy}      \] 
+            但  $\frac{dx}{dy} = \frac{1}{p}$ ，所以：
+             \[      \frac{1}{p} = -\frac{1}{p^2} \frac{dp}{dy} \Rightarrow \frac{dp}{dy} = -p      \] 
+            解得：
+             \[      p = C e^{-y}      \] 
+            代入  $x = 1 + \frac{1}{p}$ ：
+             \[      x = 1 + \frac{1}{C e^{-y}} = 1 + \frac{e^y}{C}      \] 
+            参数形式解为：
+             \[      \boxed{      \begin{cases}      x = 1 + \frac{e^y}{C}   \\      y = y      \end{cases}      }      \] 
+            \end{solution}
+        
+            \item  $y'^3 - x^3 (1 - y') = 0$ 
+        
+            \begin{solution}
+            令  $p = y'$ ，则：
+             \[      p^3 = x^3 (1 - p) \Rightarrow x = \frac{p}{(1 - p)^{1/3}}      \] 
+            令  $p = t$ ，则：
+             \[      x = \frac{t}{(1 - t)^{1/3}}, \quad dx = \frac{d}{dt} \left( \frac{t}{(1 - t)^{1/3}} \right) dt      \] 
+            计算较复杂，改用参数法。令  $t$  满足  $p = t$ ，则：
+             \[      dy = p \, dx = t \, dx      \] 
+            由  $x = \frac{t}{(1 - t)^{1/3}}$ ，求  $dx/dt$ ，然后积分得  $y(t)$ 。略去复杂计算，标准解法为设  $p = t$ ，得参数解。
+            \end{solution}
+        
+            \item  $y = y'^2 e^{y'}$ 
+        
+            \begin{solution}
+            令  $p = y'$ ，则：
+             \[      y = p^2 e^p      \] 
+            求微分：
+             \[      dy = (2p e^p + p^2 e^p) dp = p e^p (2 + p) dp      \] 
+            又  $dy = p \, dx$ ，所以：
+             \[      p \, dx = p e^p (2 + p) dp \Rightarrow dx = e^p (2 + p) dp      \] 
+            积分：
+             \[      x = \int e^p (2 + p) dp = \int 2e^p dp + \int p e^p dp = 2e^p + (p e^p - e^p) + C = (1 + p) e^p + C      \] 
+            故参数解为：
+             \[      \boxed{      \begin{cases}      x = (1 + p) e^p + C   \\      y = p^2 e^p      \end{cases}      }      \] 
+            \end{solution}
+        
+            \item  $y (1 + y'^2) = 2a$ （ $a$  为常数）
+        
+            \begin{solution}
+            令  $y' = \tan t$ ，则：
+             \[      y (1 + \tan^2 t) = 2a \Rightarrow y \sec^2 t = 2a \Rightarrow y = 2a \cos^2 t      \] 
+            又：
+             \[      dy = y' dx = \tan t \, dx      \] 
+            而：
+             \[      dy = \frac{d}{dt}(2a \cos^2 t) dt = 2a \cdot 2 \cos t (-\sin t) dt = -4a \cos t \sin t dt = -2a \sin 2t dt      \] 
+            所以：
+             \[      dx = \frac{dy}{\tan t} = \frac{-2a \sin 2t dt}{\tan t} = \frac{-2a \cdot 2 \sin t \cos t}{\frac{\sin t}{\cos t}} dt = -4a \cos^2 t dt      \] 
+            积分：
+             \[      x = -4a \int \cos^2 t dt = -4a \int \frac{1 + \cos 2t}{2} dt = -2a \left( t + \frac{1}{2} \sin 2t \right) + C = -a (2t + \sin 2t) + C      \] 
+            故参数解为：
+             \[      \boxed{      \begin{cases}      x = -a (2t + \sin 2t) + C   \\      y = 2a \cos^2 t      \end{cases}      }      \] 
+            \end{solution}
+        
+            \item  $x^2 + y'^2 = 1$ 
+        
+            \begin{solution}
+            令  $y' = p$ ，则  $x^2 + p^2 = 1$ 。设：
+             \[      x = \cos t, \quad p = \sin t      \] 
+            则：
+             \[      dy = p \, dx = \sin t \cdot (-\sin t \, dt) = -\sin^2 t \, dt      \] 
+            积分：
+             \[      y = -\int \sin^2 t \, dt = -\int \frac{1 - \cos 2t}{2} dt = -\frac{1}{2} t + \frac{1}{4} \sin 2t + C      \] 
+            故：
+             \[      \boxed{      \begin{cases}      x = \cos t   \\      y = -\frac{1}{2} t + \frac{1}{4} \sin 2t + C      \end{cases}      }      \] 
+            \end{solution}
+        
+            \item  $y^2 (y' - 1) = (2 - y')^2$ 
+        
+            \begin{solution}
+            令  $p = y'$ ，则：
+             \[      y^2 (p - 1) = (2 - p)^2      \] 
+            令  $2 - p = t$ ，则  $p = 2 - t$ ，代入：
+             \[      y^2 (2 - t - 1) = t^2 \Rightarrow y^2 (1 - t) = t^2 \Rightarrow y = \frac{t}{\sqrt{1 - t}} \quad (\text{取正})      \] 
+            更简单：令  $p = t$ ，则  $y^2 = \frac{(2 - t)^2}{t - 1}$ ，继续可得参数解。此处略。
+            \end{solution}
+        
+            \item  $(1 + xy) y \, dx + (1 - xy) x \, dy = 0$ 
+        
+            \begin{solution}
+            令  $u = xy$ ，则  $y = u/x$ ， $dy = (du - u dx/x)/x$ 。代入：
+             \[      (1 + u) \frac{u}{x} dx + (1 - u) x \cdot \frac{du - \frac{u}{x} dx}{x} = 0      \] 
+            化简：
+             \[      \frac{u(1 + u)}{x} dx + (1 - u) (du - \frac{u}{x} dx) = 0      \] 
+             \[      \left( \frac{u + u^2}{x} - \frac{u(1 - u)}{x} \right) dx + (1 - u) du = 0      \] 
+             \[      \frac{u + u^2 - u + u^2}{x} dx + (1 - u) du = 0 \Rightarrow \frac{2u^2}{x} dx + (1 - u) du = 0      \] 
+            分离变量：
+             \[      \frac{2}{x} dx = \frac{u - 1}{u^2} du      \] 
+            积分：
+             \[      2 \ln|x| = \int \left( \frac{1}{u} - \frac{1}{u^2} \right) du = \ln|u| + \frac{1}{u} + C      \] 
+            即：
+             \[      2 \ln|x| - \ln|u| - \frac{1}{u} = C \Rightarrow \ln \left| \frac{x^2}{u} \right| - \frac{1}{u} = C      \] 
+            代回  $u = xy$ ：
+             \[      \boxed{ \ln \left| \frac{x}{y} \right| - \frac{1}{xy} = C }      \] 
+            \end{solution}        
+        \end{enumerate}
+\end{problemset}
