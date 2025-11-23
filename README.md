@@ -1,34 +1,11 @@
-<!-- Author : Dongsheng Deng & Liam Huang-->
-<!-- Program Email: elegantlatex2e@gmail.com -->
+This Repository contains the course note for Ordinary Differential Equation (ODE) by Shuangshuang Ding, Ocean University of China.
 
-[Homepage](https://elegantlatex.org/) | [Github](https://github.com/ElegantLaTeX/ElegantBook) | [CTAN](https://ctan.org/pkg/elegantbook) | [Download](https://github.com/ElegantLaTeX/ElegantBook/releases) | [Wiki](https://github.com/ElegantLaTeX/ElegantBook/wiki) | [Weibo](https://weibo.com/elegantlatex)
+For now it only contains the contents of first 3 chapters of Ordinary Differential Equation (ODE) by Shuangshuang Ding on autumn term 2025. Further update will contain:
 
-![License](https://img.shields.io/ctan/l/elegantbook.svg) ![CTAN Version](https://img.shields.io/ctan/v/elegantbook.svg) ![Github Version](https://img.shields.io/github/release/ElegantLaTeX/ElegantBook.svg) ![Repo Size](https://img.shields.io/github/repo-size/ElegantLaTeX/ElegantBook.svg)
+The following contents in the course ODE (Chapter 4 - Chapter 8 of ODE, Ver. 4, Gaoxiong Wang et.al)
 
--------
+本仓库包含中国海洋大学丁双双教授的常微分方程（ODE）课程笔记。
 
-# ElegantBook: An Elegant LaTeX Template for Books
+目前，它仅包含2025年秋季学期丁双双教授的常微分方程前3章内容。后续更新将包含：
 
-ElegantBook is designed for writing books, created by [Dongsheng Deng](https://ddswhu.me/) and [Liam Huang](https://liam.page/). Just enjoy it! If you have any questions, suggestions or bug reports, you can create issues or contact us at elegantlatex2e@gmail.com.
-
-## Important Notes
-
-For some reasons, __unauthorized__ pull requests are **UNACCEPTABLE** since May 20, 2019. For those who want to help revise the templates, submit issues or clone to your own repository to modify under the LPPL-1.3c.
-
-## Acknowledgement
-
-Thank [sikouhjw](https://github.com/sikouhjw) and [syvshc](https://github.com/syvshc) for their quick response to Github issues and continuously support work for ElegantLaTeX.
-
-Thank ChinaTeX and [LaTeX Studio](http://www.latexstudio.net/) for their promotion. 
-
-
-## License
-
-This work is released under the LaTeX Project Public License, v1.3c or later.
-
-
-## Derivative Works
-
-+ [ElegantBookdown](https://github.com/XiangyunHuang/ElegantBookdown)：[XiangyunHuang](https://github.com/XiangyunHuang) developed a Bookdown template based on ElegantBook.
-+ [bookdownplus](https://github.com/pzhaonet/bookdownplus): maintained by [pzhaonet](https://github.com/pzhaonet).
-+ [PanBook](https://github.com/annProg/PanBook)：a markdown-based writing workflow Developed by [annProg](https://github.com/annProg).
+常微分方程课程的以下内容（王高雄等人编写的《常微分方程》第4版的第4章至第8章）
